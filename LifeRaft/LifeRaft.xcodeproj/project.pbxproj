@@ -13,6 +13,9 @@
 		1903C86B1BEC752D005CD107 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1903C8691BEC752D005CD107 /* Main.storyboard */; };
 		1903C86D1BEC752D005CD107 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1903C86C1BEC752D005CD107 /* Assets.xcassets */; };
 		1903C8701BEC752D005CD107 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1903C86E1BEC752D005CD107 /* LaunchScreen.storyboard */; };
+		19289CB71BEE8E49002F906B /* HomeCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19289CB61BEE8E49002F906B /* HomeCollectionViewController.swift */; };
+		19289CC51BEE9A55002F906B /* MemberCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19289CC41BEE9A55002F906B /* MemberCollectionViewCell.swift */; };
+		19289CC71BEE9AD4002F906B /* HomeTitleCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19289CC61BEE9AD4002F906B /* HomeTitleCollectionReusableView.swift */; };
 		19A41DCF1BEE68FC00C96159 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19A41DC21BEE68E400C96159 /* Alamofire.framework */; };
 		19A41DD01BEE68FC00C96159 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 19A41DC21BEE68E400C96159 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		19A41DD41BEE690B00C96159 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19A41DAA1BEE68D500C96159 /* SwiftyJSON.framework */; };
@@ -160,6 +163,9 @@
 		1903C86C1BEC752D005CD107 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1903C86F1BEC752D005CD107 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1903C8711BEC752D005CD107 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		19289CB61BEE8E49002F906B /* HomeCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewController.swift; sourceTree = "<group>"; };
+		19289CC41BEE9A55002F906B /* MemberCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberCollectionViewCell.swift; sourceTree = "<group>"; };
+		19289CC61BEE9AD4002F906B /* HomeTitleCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTitleCollectionReusableView.swift; sourceTree = "<group>"; };
 		19A41D9F1BEE68D400C96159 /* SwiftyJSON.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftyJSON.xcodeproj; path = ../SwiftyJSON/SwiftyJSON.xcodeproj; sourceTree = "<group>"; };
 		19A41DB71BEE68E400C96159 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = ../Alamofire/Alamofire.xcodeproj; sourceTree = "<group>"; };
 		B92622328D1A9928113CA608 /* Pods-LifeRaft.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LifeRaft.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LifeRaft/Pods-LifeRaft.debug.xcconfig"; sourceTree = "<group>"; };
@@ -207,6 +213,9 @@
 				1903C8651BEC752D005CD107 /* FirstViewController.swift */,
 				1903C8671BEC752D005CD107 /* SecondViewController.swift */,
 				1903C8691BEC752D005CD107 /* Main.storyboard */,
+				19289CB61BEE8E49002F906B /* HomeCollectionViewController.swift */,
+				19289CC41BEE9A55002F906B /* MemberCollectionViewCell.swift */,
+				19289CC61BEE9AD4002F906B /* HomeTitleCollectionReusableView.swift */,
 				1903C86C1BEC752D005CD107 /* Assets.xcassets */,
 				1903C86E1BEC752D005CD107 /* LaunchScreen.storyboard */,
 				1903C8711BEC752D005CD107 /* Info.plist */,
@@ -496,6 +505,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				1903C8681BEC752D005CD107 /* SecondViewController.swift in Sources */,
+				19289CC71BEE9AD4002F906B /* HomeTitleCollectionReusableView.swift in Sources */,
+				19289CC51BEE9A55002F906B /* MemberCollectionViewCell.swift in Sources */,
+				19289CB71BEE8E49002F906B /* HomeCollectionViewController.swift in Sources */,
 				1903C8641BEC752D005CD107 /* AppDelegate.swift in Sources */,
 				1903C8661BEC752D005CD107 /* FirstViewController.swift in Sources */,
 			);
