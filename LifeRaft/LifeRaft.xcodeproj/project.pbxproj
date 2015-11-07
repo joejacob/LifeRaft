@@ -22,6 +22,7 @@
 		19A41DD51BEE690B00C96159 /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 19A41DAA1BEE68D500C96159 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4C0F2FE21BEE7B730061A122 /* UberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F2FE11BEE7B730061A122 /* UberViewController.swift */; };
 		702EBA091BEE9252005480DD /* SendMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702EBA081BEE9252005480DD /* SendMessage.swift */; };
+		702EBA291BEEBDB9005480DD /* SendNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702EBA281BEEBDB9005480DD /* SendNotification.swift */; };
 		C843F025439F2FCF1FD2E477 /* Pods_LifeRaft.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEA1DEFA4AF371232FE74E5B /* Pods_LifeRaft.framework */; };
 /* End PBXBuildFile section */
 
@@ -172,6 +173,7 @@
 		19A41DB71BEE68E400C96159 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = ../Alamofire/Alamofire.xcodeproj; sourceTree = "<group>"; };
 		4C0F2FE11BEE7B730061A122 /* UberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UberViewController.swift; sourceTree = "<group>"; };
 		702EBA081BEE9252005480DD /* SendMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendMessage.swift; sourceTree = "<group>"; };
+		702EBA281BEEBDB9005480DD /* SendNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendNotification.swift; sourceTree = "<group>"; };
 		B92622328D1A9928113CA608 /* Pods-LifeRaft.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LifeRaft.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LifeRaft/Pods-LifeRaft.debug.xcconfig"; sourceTree = "<group>"; };
 		CEA1DEFA4AF371232FE74E5B /* Pods_LifeRaft.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LifeRaft.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -225,6 +227,7 @@
 				1903C86C1BEC752D005CD107 /* Assets.xcassets */,
 				1903C86E1BEC752D005CD107 /* LaunchScreen.storyboard */,
 				1903C8711BEC752D005CD107 /* Info.plist */,
+				702EBA281BEEBDB9005480DD /* SendNotification.swift */,
 			);
 			path = LifeRaft;
 			sourceTree = "<group>";
@@ -517,6 +520,7 @@
 				19289CB71BEE8E49002F906B /* HomeCollectionViewController.swift in Sources */,
 				1903C8641BEC752D005CD107 /* AppDelegate.swift in Sources */,
 				1903C8661BEC752D005CD107 /* FirstViewController.swift in Sources */,
+				702EBA291BEEBDB9005480DD /* SendNotification.swift in Sources */,
 				702EBA091BEE9252005480DD /* SendMessage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -12,6 +12,9 @@ class SecondViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        let localNotification:UILocalNotification = UILocalNotification()
+        let sender = SendNotification()
+        sender.notify(localNotification,reason: "Test",note: "IT WORKS")
         // Do any additional setup after loading the view, typically from a nib.
     }
 
