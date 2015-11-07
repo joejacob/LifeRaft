@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--MyRaft-->
@@ -191,7 +192,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Xp5-yn-7Id">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Xp5-yn-7Id">
                                 <rect key="frame" x="20" y="95" width="560" height="448"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -208,9 +209,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="Xp5-yn-7Id" secondAttribute="trailing" id="9ym-lC-TnF"/>
                             <constraint firstItem="JgH-Tj-lpz" firstAttribute="centerX" secondItem="3io-ST-BtZ" secondAttribute="centerX" id="FSZ-DL-s8U"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="Xp5-yn-7Id" secondAttribute="leading" id="Mkc-3o-anF"/>
                             <constraint firstItem="0a2-aT-B5u" firstAttribute="centerY" secondItem="3io-ST-BtZ" secondAttribute="centerY" constant="-223.5" id="Qdl-G4-Ewl"/>
+                            <constraint firstItem="Xp5-yn-7Id" firstAttribute="top" secondItem="0a2-aT-B5u" secondAttribute="bottom" constant="8" id="dut-Tv-O5g"/>
                             <constraint firstItem="0a2-aT-B5u" firstAttribute="centerX" secondItem="3io-ST-BtZ" secondAttribute="centerX" id="mPh-HS-xLq"/>
+                            <constraint firstItem="Qsd-zk-jWd" firstAttribute="top" secondItem="Xp5-yn-7Id" secondAttribute="bottom" constant="13" id="ot8-Xj-Fyu"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Fourth" image="second" id="5wu-YN-6RG"/>
