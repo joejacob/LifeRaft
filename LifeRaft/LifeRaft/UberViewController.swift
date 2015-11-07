@@ -16,7 +16,7 @@ class UberViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet var uberTable: UITableView!
     @IBOutlet var uberETA: UILabel!
     
-    var currentUbers = Array<[String]>()
+    var currentUbers = Array<[String:String?]>()
     var nextUber = [String]()
     var uberToGet : String = ""
    // let locationManager = CLLocationManager()
@@ -77,7 +77,8 @@ class UberViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell!
     {
         let cell:UITableViewCell=UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "mycell")
-        cell.textLabel?.text=""
+        let uber = currentUbers[indexPath.row]
+        cell.textLabel?.text="ETA: \(uber["eta"])  Driver name: \(uber["driver name"])"
         cell.detailTextLabel!.text="subtitle#\(indexPath.row)"
     
         return cell
@@ -87,7 +88,7 @@ class UberViewController: UIViewController, UITableViewDataSource, UITableViewDe
         // Dispose of any resources that can be recreated.
     }
     
-    func callUber()->(requestID : String, head : [String:String]){
+    func callUber(){
         let parameters : [String:AnyObject] = ["product_id" : uberToGet , "start_latitude" : 35.9998010, "start_longitude" : -78.9398990, "end_latitude" : 34.9998010, "end_longitude" : -79.0000000]
         //
         //let parameters = ["start_latitude": "35.9998010", "start_longitude": "-78.9398990", "server_token": "IkeP15gQ1R4pA5NCoYsH8wUEqYuctmf5odY9p4j0"]
@@ -127,6 +128,7 @@ class UberViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     //                        print("No available products")
                     //                    }
                     
+                self.requestInfo(currentRequest, headers: headers)
                 }
                 //self.currentUbers.append(<#T##newElement: Array<String>##Array<String>#>)
                 
@@ -134,7 +136,7 @@ class UberViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 //JSON.
         }
         //wait(w_status: 30)
-        return (currentRequest, headers)
+        //return (currentRequest, headers)
         
         
     }
@@ -142,37 +144,42 @@ class UberViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
 
 
-    func application(application: UIApplication!, performFetchWithCompletionHandler completionHandler: ((UIBackgroundFetchResult) -> Void)!) {
-        loadShows() {
-            completionHandler(UIBackgroundFetchResult.NewData)
-            print("Background Fetch Complete")
-        }
-    }
-    
-    func loadShows(completionHandler: (() -> Void)!) {
-        callUber()
-        completionHandler()
-    }
+   
 
     @IBAction func getUber(sender: UIButton) {
     
     //"server_token": "IkeP15gQ1R4pA5NCoYsH8wUEqYuctmf5odY9p4j0",
-            let (request, headers) = callUber()
+            //let (request, headers) = callUber()
         
-            requestInfo(request, headers:headers)
+            //requestInfo(request, headers:headers)
+        self.callUber()
+        
         }
     
-    func requestInfo(currentRequest: String, headers:[String:String]){
+    func requestInfo(currentRequest: String, headers:[String:String])->String{
         var requestDetails : [String: AnyObject] = ["request_id":currentRequest]
-        Alamofire.request(.GET, "https://api.uber.com/v1/requests/\(currentRequest)", parameters: requestDetails, encoding: .JSON, headers: headers)
+        Alamofire.request(.GET, "https://sandbox-api.uber.com/v1/requests/\(currentRequest)", encoding: .JSON, headers: headers)
             
             .responseJSON{ response in
+                
                 print("Current request id: \(currentRequest)")
+                print(response.request)
+                print(response.response)
+                print(response.data)
+                print(response.result)
                 if let value = response.result.value{
                     print(value)
                     let json = JSON(value)
+                    var uberInfo : [String: String?]
+                    uberInfo = ["eta":json["eta"].string, "driver name":json["driver"]["name"].string]
+                    //"latitude":json["location"]["latitude"].float.description
+                    self.currentUbers.append(uberInfo)
+                    self.uberTable.reloadData()
+                    print("current ubers \(self.currentUbers)")
+                   
                 }
         }
+        return currentRequest
     
     }
 
