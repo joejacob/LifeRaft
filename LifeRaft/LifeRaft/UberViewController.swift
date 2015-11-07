@@ -19,6 +19,7 @@ class UberViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var currentUbers = Array<[String:String?]>()
     var nextUber = [String]()
     var uberToGet : String = ""
+    var myHeader = ["Authorization": "Bearer blSLfPsmxbbwfvDiGxnHKtNgpZLy8g"]
    // let locationManager = CLLocationManager()
     
     
@@ -37,8 +38,11 @@ class UberViewController: UIViewController, UITableViewDataSource, UITableViewDe
 //            locationManager.startUpdatingLocation()
 //        }
         getClosestUber()
-                uberTable.dataSource = self
+        uberTable.dataSource = self
         uberTable.delegate = self
+        for var u in currentUbers{
+            requestInfo(u["request"]!!)
+        }
     }
         // Do any additional setup after loading the view.
     func getClosestUber(){
@@ -81,8 +85,8 @@ class UberViewController: UIViewController, UITableViewDataSource, UITableViewDe
     {
         let cell:UITableViewCell=UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "mycell")
         let uber = currentUbers[indexPath.row]
-        cell.textLabel?.text="ETA: \(uber["eta"])  Driver name: \(uber["driver name"])"
-        cell.detailTextLabel!.text="subtitle#\(indexPath.row)"
+        cell.textLabel?.text="ETA: \(uber["eta"]!)  Driver name: \(uber["driver name"]!)"
+        cell.detailTextLabel?.text="Riders \(uber["riders"]!!)"
     
         return cell
     }
@@ -100,12 +104,12 @@ class UberViewController: UIViewController, UITableViewDataSource, UITableViewDe
         Alamofire.request(.GET, "https://api.uber.com/v1/products", parameters: parameters)
         let parameters = ["latitude": "35.9998010", "longitude": "-78.9398990", "server_token": "IkeP15gQ1R4pA5NCoYsH8wUEqYuctmf5odY9p4j0"]
         */
-        let headers = ["Authorization": "Bearer blSLfPsmxbbwfvDiGxnHKtNgpZLy8g"]
+        //let headers = ["Authorization": "Bearer blSLfPsmxbbwfvDiGxnHKtNgpZLy8g"]
         //let parameters = ["request_id" : "e06cf0d4-fbe4-4569-b543-449bdfc8edd7"]
         // let headers = JSON(["Authorization":"Bearer blSLfPsmxbbwfvDiGxnHKtNgpZLy8g"])
         //Alamofire.request(.DELETE, parameters  : parameters, encoding: .JSON, headers: headers)
         var currentRequest = ""
-        Alamofire.request(.POST, "https://sandbox-api.uber.com/v1/requests", parameters: parameters, encoding: .JSON, headers: headers)
+        Alamofire.request(.POST, "https://sandbox-api.uber.com/v1/requests", parameters: parameters, encoding: .JSON, headers: myHeader)
             
             .responseJSON{ response in
                 print(response.request)
@@ -131,7 +135,7 @@ class UberViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     //                        print("No available products")
                     //                    }
                     
-                self.requestInfo(currentRequest, headers: headers)
+                self.requestInfo(currentRequest)
                 }
                 //self.currentUbers.append(<#T##newElement: Array<String>##Array<String>#>)
                 
@@ -159,9 +163,9 @@ class UberViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         }
     
-    func requestInfo(currentRequest: String, headers:[String:String])->String{
+    func requestInfo(currentRequest: String)->String{
         var requestDetails : [String: AnyObject] = ["request_id":currentRequest]
-        Alamofire.request(.GET, "https://sandbox-api.uber.com/v1/requests/\(currentRequest)", encoding: .JSON, headers: headers)
+        Alamofire.request(.GET, "https://sandbox-api.uber.com/v1/requests/\(currentRequest)", encoding: .JSON, headers: myHeader)
             
             .responseJSON{ response in
                 
@@ -174,7 +178,7 @@ class UberViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     print(value)
                     let json = JSON(value)
                     var uberInfo : [String: String?]
-                    uberInfo = ["eta":json["eta"].string, "driver name":json["driver"]["name"].string,"riders":""]
+                    uberInfo = ["eta":json["eta"].string, "driver name":json["driver"]["name"].string,"riders":"","request":currentRequest]
                     //"latitude":json["location"]["latitude"].float.description
                     self.currentUbers.append(uberInfo)
                     self.uberTable.reloadData()
