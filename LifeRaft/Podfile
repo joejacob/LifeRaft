@@ -6,6 +6,7 @@ use_frameworks!
 target 'LifeRaft' do
 
 pod 'GoogleMaps'
+pod 'Firebase', '>= 2.4.2'
 
 end
 
