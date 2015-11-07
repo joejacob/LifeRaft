@@ -7,16 +7,23 @@
 //
 
 import UIKit
+import Firebase
 
 private let reuseIdentifier = "Cell"
 private let cellReuseIdentifier = "RaftmateCell"
 private let titleReuseIdentifier = "RaftTitle"
 private let sectionInsets = UIEdgeInsets(top: 50.0, left: 20.0, bottom: 50.0, right: 20.0)
 
+//var myRootRef = Firebase(url:"https://dazzling-inferno-3224.firebaseio.com/testing/test2")
+var arRef = myRootRef.childByAppendingPath("chat/group1")
+
 class HomeCollectionViewController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+//        myRootRef.setValue(["Do you have data? You'll love Firebase.222", "string2"])
+//        arRef.setValue(["Hello.", "Call me an Uber.", "No."])
+//        arRef.childByAutoId().setValue("Why not?")
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
