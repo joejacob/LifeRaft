@@ -8,6 +8,9 @@
 
 import UIKit
 import GoogleMaps
+import Firebase
+
+var myRootRef = Firebase(url:"https://dazzling-inferno-3224.firebaseio.com/")
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
