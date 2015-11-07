@@ -41,10 +41,37 @@ class UberViewController: UIViewController, UITableViewDataSource, UITableViewDe
         uberTable.dataSource = self
         uberTable.delegate = self
         for var u in currentUbers{
-            requestInfo(u["request"]!!)
+            requestInfo(u["request"]!!,add:false)
         }
+//        for var u in currentUbers{
+//            updateUberStatus(u["request"]!!, status: "processing")
+//        }
+        
+    }
+    override func viewDidAppear(animated: Bool) {
+        var i = 0
+        for var u in currentUbers{
+            print("should make the status processs")
+            updateUberStatus(u["request"]!!, status: "accepted", index: i)
+            i++
+        }
+        
+        for var u in currentUbers{
+            requestInfo(u["request"]!!,add:false)
+        }
+
+        
+        self.uberTable.reloadData()
+
     }
         // Do any additional setup after loading the view.
+    func updateUberStatus(requestNum : String, status : String, index: Int){
+        var stat = ["status": status]
+        Alamofire.request(.PUT, "https://sandbox-api.uber.com/v1/sandbox/requests/\(requestNum)", parameters: stat, encoding: .JSON, headers: myHeader)
+        //currentUbers[0]["status"]=status
+        
+    }
+    
     func getClosestUber(){
         let parameters = ["start_latitude": "35.9998010", "start_longitude": "-78.9398990", "server_token": "IkeP15gQ1R4pA5NCoYsH8wUEqYuctmf5odY9p4j0"]
         
@@ -68,13 +95,24 @@ class UberViewController: UIViewController, UITableViewDataSource, UITableViewDe
                         print("Estimate: \(result["estimate"].int!/60) minutes")
                     }
                 }
+                
+                print("****UBER TO get \(self.uberToGet)")
         }
 
     }
+    func buttonClicked(sender: UIButton!){
+        currentUbers[sender.tag]["riders"]!! += " name"
+        var i:Int? = Int(currentUbers[sender.tag]["open spots"]!!)
+        i!--
+        currentUbers[sender.tag]["open spots"] = "\(i!)"
+        self.uberTable.reloadData()
+    }
+    
     func numberOfSectionsInTableView(tableView: UITableView) -> Int
     {
         return 1
     }
+    
     
     func tableView(tableView:UITableView!, numberOfRowsInSection section:Int) -> Int
     {
@@ -85,8 +123,23 @@ class UberViewController: UIViewController, UITableViewDataSource, UITableViewDe
     {
         let cell:UITableViewCell=UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "mycell")
         let uber = currentUbers[indexPath.row]
-        cell.textLabel?.text="ETA: \(uber["eta"]!)  Driver name: \(uber["driver name"]!)"
-        cell.detailTextLabel?.text="Riders \(uber["riders"]!!)"
+        let button : UIButton = UIButton(type: UIButtonType.ContactAdd) as UIButton
+        button.frame = CGRectMake(20, 20, 20, 20)
+        let cellHeight: CGFloat = 44.0
+        button.center = CGPoint(x: view.bounds.width - 40, y:cellHeight/2.0)
+        button.addTarget(self, action: "buttonClicked:", forControlEvents:  UIControlEvents.TouchUpInside)
+        button.tag = indexPath.row
+        if uber["status"]! == "accepted"{
+        cell.textLabel?.text="ETA: \(uber["eta"]!!)  Driver name: \(uber["driver name"]!!)"
+        
+        }
+        else{
+            cell.textLabel?.text = "Status: \(uber["status"]!!)"
+            //cell.detailTextLabel?.text="Riders"
+        }
+        cell.detailTextLabel?.text="Riders \(uber["riders"]!!) Open Spots: \(uber["open spots"]!!)"
+        
+        cell.addSubview(button)
     
         return cell
     }
@@ -135,7 +188,7 @@ class UberViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     //                        print("No available products")
                     //                    }
                     
-                self.requestInfo(currentRequest)
+                    self.requestInfo(currentRequest, add:true)
                 }
                 //self.currentUbers.append(<#T##newElement: Array<String>##Array<String>#>)
                 
@@ -163,7 +216,7 @@ class UberViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         }
     
-    func requestInfo(currentRequest: String)->String{
+    func requestInfo(currentRequest: String, add : Bool)->String{
         var requestDetails : [String: AnyObject] = ["request_id":currentRequest]
         Alamofire.request(.GET, "https://sandbox-api.uber.com/v1/requests/\(currentRequest)", encoding: .JSON, headers: myHeader)
             
@@ -178,14 +231,23 @@ class UberViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     print(value)
                     let json = JSON(value)
                     var uberInfo : [String: String?]
-                    uberInfo = ["eta":json["eta"].string, "driver name":json["driver"]["name"].string,"riders":"","request":currentRequest]
+                    uberInfo = ["eta":"\(json["eta"].int!)", "driver name":json["driver"]["name"].string,"riders":"","request":currentRequest, "status":json["status"].string,"open spots":"\(3)"]
                     //"latitude":json["location"]["latitude"].float.description
+                    if add{
                     self.currentUbers.append(uberInfo)
+                    }
+                    else{
+                        self.currentUbers.removeFirst()
+                        self.currentUbers.append(uberInfo)
+                        
+                    }
                     self.uberTable.reloadData()
+                    
                     print("current ubers \(self.currentUbers)")
                    
                 }
         }
+        getClosestUber()
         return currentRequest
     
     }
