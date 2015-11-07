@@ -36,6 +36,12 @@ class UberViewController: UIViewController, UITableViewDataSource, UITableViewDe
 //            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
 //            locationManager.startUpdatingLocation()
 //        }
+        getClosestUber()
+                uberTable.dataSource = self
+        uberTable.delegate = self
+    }
+        // Do any additional setup after loading the view.
+    func getClosestUber(){
         let parameters = ["start_latitude": "35.9998010", "start_longitude": "-78.9398990", "server_token": "IkeP15gQ1R4pA5NCoYsH8wUEqYuctmf5odY9p4j0"]
         
         Alamofire.request(.GET, "https://api.uber.com/v1/estimates/time", parameters: parameters)//, encoding: .JSON, headers: headers)
@@ -47,11 +53,11 @@ class UberViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 print(response.data)
                 print(response.result)
                 
-               if let value = response.result.value{
+                if let value = response.result.value{
                     let valueJson = JSON(value)
                     for result in valueJson["times"].arrayValue{
                         if result["display_name"].string!=="uberX"{
-                            self.uberETA.text!+="\(result["estimate"].int!/60) minutes"
+                            self.uberETA.text!="ETA: \(result["estimate"].int!/60) minutes"
                             self.uberToGet = result["product_id"].string!
                         }
                         print("Uber type: \(result["display_name"].string!)")
@@ -59,11 +65,8 @@ class UberViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     }
                 }
         }
-        uberTable.dataSource = self
-        uberTable.delegate = self
+
     }
-        // Do any additional setup after loading the view.
-    
     func numberOfSectionsInTableView(tableView: UITableView) -> Int
     {
         return 1
@@ -138,7 +141,7 @@ class UberViewController: UIViewController, UITableViewDataSource, UITableViewDe
         //wait(w_status: 30)
         //return (currentRequest, headers)
         
-        
+        getClosestUber()
     }
     //print("end")
     
@@ -171,7 +174,7 @@ class UberViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     print(value)
                     let json = JSON(value)
                     var uberInfo : [String: String?]
-                    uberInfo = ["eta":json["eta"].string, "driver name":json["driver"]["name"].string]
+                    uberInfo = ["eta":json["eta"].string, "driver name":json["driver"]["name"].string,"riders":""]
                     //"latitude":json["location"]["latitude"].float.description
                     self.currentUbers.append(uberInfo)
                     self.uberTable.reloadData()
