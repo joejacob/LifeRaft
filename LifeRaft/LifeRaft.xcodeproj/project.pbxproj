@@ -17,6 +17,7 @@
 		19A41DD01BEE68FC00C96159 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 19A41DC21BEE68E400C96159 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		19A41DD41BEE690B00C96159 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19A41DAA1BEE68D500C96159 /* SwiftyJSON.framework */; };
 		19A41DD51BEE690B00C96159 /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 19A41DAA1BEE68D500C96159 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		702EBA091BEE9252005480DD /* SendMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702EBA081BEE9252005480DD /* SendMessage.swift */; };
 		C843F025439F2FCF1FD2E477 /* Pods_LifeRaft.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEA1DEFA4AF371232FE74E5B /* Pods_LifeRaft.framework */; };
 /* End PBXBuildFile section */
 
@@ -162,6 +163,7 @@
 		1903C8711BEC752D005CD107 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		19A41D9F1BEE68D400C96159 /* SwiftyJSON.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftyJSON.xcodeproj; path = ../SwiftyJSON/SwiftyJSON.xcodeproj; sourceTree = "<group>"; };
 		19A41DB71BEE68E400C96159 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = ../Alamofire/Alamofire.xcodeproj; sourceTree = "<group>"; };
+		702EBA081BEE9252005480DD /* SendMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendMessage.swift; sourceTree = "<group>"; };
 		B92622328D1A9928113CA608 /* Pods-LifeRaft.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LifeRaft.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LifeRaft/Pods-LifeRaft.debug.xcconfig"; sourceTree = "<group>"; };
 		CEA1DEFA4AF371232FE74E5B /* Pods_LifeRaft.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LifeRaft.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -203,6 +205,7 @@
 		1903C8621BEC752D005CD107 /* LifeRaft */ = {
 			isa = PBXGroup;
 			children = (
+				702EBA081BEE9252005480DD /* SendMessage.swift */,
 				1903C8631BEC752D005CD107 /* AppDelegate.swift */,
 				1903C8651BEC752D005CD107 /* FirstViewController.swift */,
 				1903C8671BEC752D005CD107 /* SecondViewController.swift */,
@@ -498,6 +501,7 @@
 				1903C8681BEC752D005CD107 /* SecondViewController.swift in Sources */,
 				1903C8641BEC752D005CD107 /* AppDelegate.swift in Sources */,
 				1903C8661BEC752D005CD107 /* FirstViewController.swift in Sources */,
+				702EBA091BEE9252005480DD /* SendMessage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
