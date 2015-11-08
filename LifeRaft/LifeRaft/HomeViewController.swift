@@ -33,6 +33,15 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        var notRef = myRootRef.childByAppendingPath("notification")
+        notRef.observeEventType(FEventType.Value, withBlock: { snapshot in
+            print(snapshot.value)
+            let note = UILocalNotification()
+            let no = SendNotification()
+            no.notify(note, reason: "", note: snapshot.value as! String)
+        })
 
         // Do any additional setup after loading the view.
         
@@ -54,6 +63,9 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
                     self.memKeys.append(newUid)
                     self.myCollectionView.reloadData()
                     self.myCollectionView.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.myCollectionView.reloadData()
+                })
             }
 //            print(snapshot.value.objectForKey("author"))
 //            print(snapshot.value.objectForKey("title"))

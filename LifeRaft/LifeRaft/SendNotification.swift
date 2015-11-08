@@ -14,7 +14,7 @@ class SendNotification{
     func notify(localNotification:UILocalNotification,reason:String,note:String)->Void{
         localNotification.alertAction = reason
         localNotification.alertBody = note
-        localNotification.fireDate = NSDate(timeIntervalSinceNow: 1)
+        localNotification.fireDate = NSDate(timeIntervalSinceNow: 10)
         UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
     }
 }
