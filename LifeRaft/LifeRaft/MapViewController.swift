@@ -9,20 +9,28 @@
 import UIKit
 import GoogleMaps
 
-class MapViewController: UIViewController, GMSMapViewDelegate, UIPopoverPresentationControllerDelegate {
+class MapViewController: UIViewController, GMSMapViewDelegate {
     
     // group cannot exceed max of 100 people
     var markers = [GMSMarker?](count: 100, repeatedValue: nil)
+    var groupMems = [Int: [String: String]]()   // list of people in group
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let camera = GMSCameraPosition.cameraWithLatitude(-33.868,
-            longitude:151.2086, zoom:6)
+        let camera = GMSCameraPosition.cameraWithLatitude(-33.868, longitude:151.2086, zoom:6)
         var mapView = GMSMapView.mapWithFrame(self.view.bounds, camera:camera)
         mapView.delegate = self
         let numPeopleInGroup = 6 // number of people in the group
         var bounds = GMSCoordinateBounds() // coord bounds
+        
+        
+        // updating from database
+        var memberRef = myRootRef.childByAppendingPath("chat/group1/members")
+        var uberRef = myRootRef.childByAppendingPath("chat/group1/ubers")
+        
         
         // friend locations
         // TODO: the title of each marker will be the friend's initials
@@ -34,13 +42,16 @@ class MapViewController: UIViewController, GMSMapViewDelegate, UIPopoverPresenta
             bounds.includingCoordinate(coord)
             var m = GMSMarker()
             m.position = coord
-            m.title = String(i)
             m.icon = UIImage(named: "smiley-face")
             
             // distance from current user
             let ccoord = CLLocation(latitude: coord.latitude, longitude: coord.longitude)
             let dist = Double(round((ccoord.distanceFromLocation(base)/1000) * Double(0.62137) * 10)/10)
-            m.snippet = "\(dist) mi"
+            m.title = "\(String(i))  \(dist) mi"
+            
+            // battery
+            UIDevice.currentDevice().batteryMonitoringEnabled = true
+            m.snippet = "\(UIDevice.currentDevice().batteryLevel)"
             
             m.appearAnimation = kGMSMarkerAnimationPop
             m.map = mapView
@@ -64,31 +75,10 @@ class MapViewController: UIViewController, GMSMapViewDelegate, UIPopoverPresenta
         return view;
     }
     
-    func mapView(mapView: GMSMapView!, didTapMarker marker: GMSMarker!) -> Bool {
-        
-        
-        //(mapVC, animated: true, completion: nil)
-        
-        return true
-    }*/
-    
-   /* @IBOutlet weak var getDirectionsView: UIView!
-    func mapView(mapView: GMSMapView!, didLongPressAtCoordinate marker: CLLocationCoordinate2D!) {
-        print("cat")
-        self.view.bringSubviewToFront(getDirectionsView)
-
-    }
-    
-    @IBAction func tapCallDirections(sender: UIButton) {
-        
-        
-    }*/
-    
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
+    }*/
     
     
     /*
