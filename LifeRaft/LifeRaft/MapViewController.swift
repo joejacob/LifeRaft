@@ -10,39 +10,55 @@ import UIKit
 import GoogleMaps
 import Firebase
 import SwiftyJSON
+import CoreLocation
 
-class MapViewController: UIViewController, GMSMapViewDelegate {
+class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDelegate {
     
     // group cannot exceed max of 100 people
     var markers = [GMSMarker?](count: 100, repeatedValue: nil)
     var uberMarkers = [GMSMarker?](count: 100, repeatedValue: nil)
     var groupMems = [String: [String: String]]()   // list of people in group
     var uberMems = [String: [String: String]]()   // list of people in group
-    
+    let locationManager = CLLocationManager()
+    let camera = GMSCameraPosition.cameraWithLatitude(36.0032805, longitude:-78.9401984, zoom:6)
+    var userCoord = CLLocationCoordinate2D(latitude: -33.868, longitude: 151.2086)
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Ask for Authorisation from the User.
+        self.locationManager.requestAlwaysAuthorization()
         
-        let camera = GMSCameraPosition.cameraWithLatitude(-33.868, longitude:151.2086, zoom:6)
+        // For use in foreground
+        self.locationManager.requestWhenInUseAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            self.locationManager.delegate = self
+            self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            self.locationManager.startUpdatingLocation()
+        }
         var mapView = GMSMapView.mapWithFrame(self.view.bounds, camera:camera)
         mapView.delegate = self
-        var bounds = GMSCoordinateBounds() // coord bounds
+        
         
         
         // updating from database
         var memberRef = myRootRef.childByAppendingPath("group1/members/")
         var uberRef = myRootRef.childByAppendingPath("group1/ubers/")
-        
+        print("WOOOOOO")
         memberRef.observeEventType(FEventType.Value, withBlock: {
             snapshot in let json = JSON(snapshot.value)
             for (r , k) in json {
+                print("memeememmeber ref")
+                print("memeememmeber ref")
+                print("memeememmeber ref")
+                print(r)
                 var testGroup = [String:String]()
                 for (key, val) in k {
                     testGroup[String(key)] = String(val)
                 }
                 self.groupMems[String(r)] = testGroup
             }
-            self.updatePeople(self.groupMems)
+            self.updatePeople(self.groupMems, mapView:mapView)
             print("\(self.groupMems.count)")
         })
        // var numPeopleInGroup = self.groupMems.count // number of people in the group
@@ -50,7 +66,6 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
         
         print("\(self.groupMems.count)")
         
-        let base = CLLocation(latitude: -33.868, longitude: 151.2086)
         
         uberRef.observeEventType(FEventType.Value, withBlock: {
             snapshot in let json = JSON(snapshot.value)
@@ -61,7 +76,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
                 }
                 self.uberMems[String(r)] = testUber
             }
-           self.updateCars(self.uberMems)
+            self.updateCars(self.uberMems, mapView: mapView)
         })
         var numUbers = self.uberMems.count // number of people in the group
         
@@ -84,7 +99,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
                 }
                 self.groupMems[String(r)] = testGroup
             }
-            self.updatePeople(self.groupMems)
+            self.updatePeople(self.groupMems, mapView: mapView)
             
         })
         
@@ -98,7 +113,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
                 }
                 self.groupMems[String(r)] = testGroup
             }
-            self.updatePeople(self.groupMems)
+            self.updatePeople(self.groupMems, mapView: mapView)
             
         })
         
@@ -112,7 +127,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
                 }
                 self.groupMems[String(r)] = testGroup
             }
-            self.updatePeople(self.groupMems)
+            self.updatePeople(self.groupMems, mapView: mapView)
             
         })
         
@@ -126,7 +141,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
                 }
                 self.groupMems[String(r)] = testUber
             }
-            self.updateCars(self.uberMems)
+            self.updateCars(self.uberMems, mapView: mapView)
             
         })
         
@@ -140,7 +155,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
                 }
                 self.groupMems[String(r)] = testUber
             }
-            self.updateCars(self.uberMems)
+            self.updateCars(self.uberMems, mapView: mapView)
             
         })
         
@@ -154,10 +169,10 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
                 }
                 self.groupMems[String(r)] = testUber
             }
-            self.updateCars(self.uberMems)
+            self.updateCars(self.uberMems, mapView: mapView)
             
         })
-        for i in 0...(numPeopleInGroup-1) {
+        /*for i in 0...(numPeopleInGroup-1) {
             let posx: CLLocationDegrees = -33.868 + Double(i)
             let posy: CLLocationDegrees = 151.2086 - Double(i)
             let coord = CLLocationCoordinate2DMake(posx, posy)
@@ -178,68 +193,108 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
             m.appearAnimation = kGMSMarkerAnimationPop
             m.map = mapView
             markers[i] = m
-        }
+        }*/
         
         
         // updating bounds
-        var camUpdate = GMSCameraUpdate.fitBounds(bounds, withPadding:30.0)
-        mapView.moveCamera(camUpdate)
         self.view = mapView
-    }
-
-    func updatePeople(gM:[String: [String:String]]) {
-        /*
-        WHEN THE DATABASE HAS REAL THINGS
-        var i = 0
-        let base = CLLocation(latitude: -33.868, longitude: 151.2086)
-        for (r,k) in self.groupMems {
         
-        let latlong = k["Location"]!.characters.split{$0 == " "}.map(String.init)
-        let posx: CLLocationDegrees = CGFloat(latlong[0])
-        let posy: CLLocationDegrees = CGFloat(latlong[1])
-        let coord = CLLocationCoordinate2DMake(posx, posy)
-        bounds.includingCoordinate(coord)
-        var m = GMSMarker()
-        m.position = coord
-        m.icon = UIImage(named: "smiley-face")
-        
-        // distance from current user
-        let ccoord = CLLocation(latitude: coord.latitude, longitude: coord.longitude)
-        let dist = Double(round((ccoord.distanceFromLocation(base)/1000) * Double(0.62137) * 10)/10)
-        m.title = "\(k["Name"])  \(dist) mi"
-        m.snippet = "Battery: \(k["Battery])"
-        
-        
-        m.appearAnimation = kGMSMarkerAnimationPop
-        m.map = mapView
-        markers[i] = m
-        i++
-        }
-        */
     }
     
-    func updateCars(uM: [String: [String:String]]) {
-        /* var l = 0
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
+        self.userCoord = locValue
+        let id = "3651"
+        var memRef = (myRootRef.childByAppendingPath("group1/members/"))
+        memRef.observeEventType(FEventType.Value, withBlock: {
+            snapshot in let json = JSON(snapshot.value)
+            for (r , k) in json {
+                if(String(r) == id) {
+                    var testGroup = [String:String]()
+                    for (key, val) in k {
+                        testGroup[String(key)] = String(val)
+                    }
+                    let cat = "\(locValue.latitude) \(locValue.longitude)"
+                    testGroup["Location"] = cat
+                    UIDevice.currentDevice().batteryMonitoringEnabled = true
+                    testGroup["Battery"] = "\(UIDevice.currentDevice().batteryLevel)"
+                    let userRef = myRootRef.childByAppendingPath("group1/members/\(id)")
+                    userRef.updateChildValues(["Location":cat])
+                    self.groupMems[String(r)] = testGroup
+                }
+            }
+            //self.updatePeople(self.groupMems, mapView: mapView)
+        })
+        
+        print("locations = \(locValue.latitude) \(locValue.longitude)")
+    }
+    
+    
+    func updatePeople(gM:[String: [String:String]], mapView: GMSMapView) {
+        var i = 0
+        var bounds = GMSCoordinateBounds() // coord bounds
+        print(self.groupMems)
+        for (r,k) in self.groupMems {
+            if k["Location"] != nil{
+                print(r)
+                
+                print(" toooooo \(k)")
+                let latlong = k["Location"]!.characters.split{$0 == " "}.map(String.init)
+                let posx: CLLocationDegrees = Double(latlong[0])!
+                let posy: CLLocationDegrees = Double(latlong[1])!
+                let coord = CLLocationCoordinate2DMake(posx, posy)
+                bounds.includingCoordinate(coord)
+                var m = GMSMarker()
+                m.position = coord
+                m.icon = UIImage(named: "smiley-face")
+                
+                // distance from current user
+                let ccoord = CLLocation(latitude: coord.latitude, longitude: coord.longitude)
+                var locDummy = CLLocation(latitude: self.userCoord.latitude, longitude: self.userCoord.longitude)
+                let dist = Double(round((ccoord.distanceFromLocation(locDummy)/1000) * Double(0.62137) * 10)/10)
+                m.title = "\(k["Name"]!)  \(dist) mi"
+                m.snippet = "Battery: \(k["Battery"]!)%"
+                
+                
+                m.appearAnimation = kGMSMarkerAnimationPop
+                m.map = mapView
+                markers[i] = m
+                i++
+                var camUpdate = GMSCameraUpdate.fitBounds(bounds, withPadding:30.0)
+                mapView.moveCamera(camUpdate)
+            }
+        }
+        
+    }
+    
+    func updateCars(uM: [String: [String:String]], mapView: GMSMapView) {
+        var l = 0
+        var bounds = GMSCoordinateBounds() // coord bounds
         for (ub, us) in self.uberMems {
-        print("yo")
-        let latlong = us["location"]!.characters.split{$0 == " "}.map(String.init)
-        let posx: CLLocationDegrees = Double(latlong[0])!
-        let posy: CLLocationDegrees = Double(latlong[1])!
-        let coord = CLLocationCoordinate2DMake(posx, posy)
-        var u = GMSMarker()
-        u.position = coord
-        u.icon = UIImage(named: "uber-car")
-        
-        // distance from current user
-        let ccoord = CLLocation(latitude: coord.latitude, longitude: coord.longitude)
-        let dist = Double(round((ccoord.distanceFromLocation(base)/1000) * Double(0.62137) * 10)/10)
-        u.title = "\(dist) mi"
-        
-        u.appearAnimation = kGMSMarkerAnimationPop
-        u.map = mapView
-        self.uberMarkers[l] = u
-        l++
-        }*/
+            if us["location"] != nil {
+                let latlong = us["location"]!.characters.split{$0 == " "}.map(String.init)
+                let posx: CLLocationDegrees = Double(latlong[0])!
+                let posy: CLLocationDegrees = Double(latlong[1])!
+                let coord = CLLocationCoordinate2DMake(posx, posy)
+                var u = GMSMarker()
+                bounds.includingCoordinate(coord)
+                u.position = coord
+                u.icon = UIImage(named: "uber-car")
+                
+                // distance from current user
+                let ccoord = CLLocation(latitude: coord.latitude, longitude: coord.longitude)
+                var locDummy = CLLocation(latitude: self.userCoord.latitude, longitude: self.userCoord.longitude)
+                let dist = Double(round((ccoord.distanceFromLocation(locDummy)/1000) * Double(0.62137) * 10)/10)
+                u.title = "\(dist) mi"
+                
+                u.appearAnimation = kGMSMarkerAnimationPop
+                u.map = mapView
+                self.uberMarkers[l] = u
+                l++
+                var camUpdate = GMSCameraUpdate.fitBounds(bounds, withPadding:30.0)
+                mapView.moveCamera(camUpdate)
+            }
+        }
     }
     
     /*func mapView(mapView: GMSMapView!, markerInfoWindow marker: GMSMarker!) -> UIView! {
