@@ -272,6 +272,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
         var bounds = GMSCoordinateBounds() // coord bounds
         for (ub, us) in self.uberMems {
             if us["location"] != nil {
+                print(us["location"])
                 let latlong = us["location"]!.characters.split{$0 == " "}.map(String.init)
                 let posx: CLLocationDegrees = Double(latlong[0])!
                 let posy: CLLocationDegrees = Double(latlong[1])!
