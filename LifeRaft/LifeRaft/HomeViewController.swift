@@ -55,7 +55,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 5
+        return 7
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -64,6 +64,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
 //        cell.backgroundColor = UIColor.blackColor()
         cell.myNameLabel.text = "Ethan"
         cell.myStatusLabel.text = "OK"
+        cell.myImageView.image = UIImage(named: "uber.png")
         
         // Configure the cell
         
@@ -102,7 +103,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     */
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return CGSize(width: 150, height: 130)
+        return CGSize(width: 160, height: 145)
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
