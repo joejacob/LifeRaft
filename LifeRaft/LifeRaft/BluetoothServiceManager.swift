@@ -13,7 +13,6 @@ import MultipeerConnectivity
 protocol BluetoothManagerDelegate {
     
     func connectedDevicesChanged(manager : BluetoothManager, connectedDevices: [String])
-    //func colorChanged(manager : BluetoothManager, colorString: String)
     
 }
 
@@ -106,7 +105,6 @@ extension BluetoothManager : MCSessionDelegate {
     func session(session: MCSession, didReceiveData data: NSData, fromPeer peerID: MCPeerID) {
         NSLog("%@", "didReceiveData: \(data.length) bytes")
         let str = NSString(data: data, encoding: NSUTF8StringEncoding) as! String
-        //self.delegate?.colorChanged(self, colorString: str)
     }
     
     func session(session: MCSession, didReceiveStream stream: NSInputStream, withName streamName: String, fromPeer peerID: MCPeerID) {
