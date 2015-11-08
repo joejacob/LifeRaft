@@ -28,6 +28,7 @@
 		702EBA2F1BEEF8F0005480DD /* BluetoothServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702EBA2E1BEEF8EF005480DD /* BluetoothServiceManager.swift */; };
 		C843F025439F2FCF1FD2E477 /* Pods_LifeRaft.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEA1DEFA4AF371232FE74E5B /* Pods_LifeRaft.framework */; };
 		D341BEC51BEEEDAA0059D991 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D341BEC41BEEEDAA0059D991 /* MapViewController.swift */; };
+		D341BEDD1BEEF55B0059D991 /* MapInfoWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D341BEDC1BEEF55B0059D991 /* MapInfoWindow.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -184,6 +185,7 @@
 		B92622328D1A9928113CA608 /* Pods-LifeRaft.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LifeRaft.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LifeRaft/Pods-LifeRaft.debug.xcconfig"; sourceTree = "<group>"; };
 		CEA1DEFA4AF371232FE74E5B /* Pods_LifeRaft.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LifeRaft.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D341BEC41BEEEDAA0059D991 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		D341BEDC1BEEF55B0059D991 /* MapInfoWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapInfoWindow.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -223,6 +225,8 @@
 		1903C8621BEC752D005CD107 /* LifeRaft */ = {
 			isa = PBXGroup;
 			children = (
+				D341BEDC1BEEF55B0059D991 /* MapInfoWindow.xib */,
+				D341BEC41BEEEDAA0059D991 /* MapViewController.swift */,
 				702EBA081BEE9252005480DD /* SendMessage.swift */,
 				4C0F2FE11BEE7B730061A122 /* UberViewController.swift */,
 				1903C8631BEC752D005CD107 /* AppDelegate.swift */,
@@ -327,6 +331,7 @@
 				TargetAttributes = {
 					1903C85F1BEC752D005CD107 = {
 						CreatedOnToolsVersion = 7.1;
+						DevelopmentTeam = L767347534;
 					};
 				};
 			};
@@ -464,6 +469,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D341BEDD1BEEF55B0059D991 /* MapInfoWindow.xib in Resources */,
 				1903C8701BEC752D005CD107 /* LaunchScreen.storyboard in Resources */,
 				1903C86D1BEC752D005CD107 /* Assets.xcassets in Resources */,
 				1903C86B1BEC752D005CD107 /* Main.storyboard in Resources */,
@@ -662,11 +668,14 @@
 			baseConfigurationReference = B92622328D1A9928113CA608 /* Pods-LifeRaft.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = LifeRaft/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.LifeRaft;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompanyname.LifeRaft;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -675,11 +684,14 @@
 			baseConfigurationReference = 0C03B7CA8E92EB78FBFC5444 /* Pods-LifeRaft.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = LifeRaft/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.LifeRaft;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompanyname.LifeRaft;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

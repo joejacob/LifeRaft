@@ -8,25 +8,85 @@
 
 import UIKit
 import GoogleMaps
+import Firebase
+import SwiftyJSON
 
-class MapViewController: UIViewController, GMSMapViewDelegate, UIPopoverPresentationControllerDelegate {
+class MapViewController: UIViewController, GMSMapViewDelegate {
     
     // group cannot exceed max of 100 people
     var markers = [GMSMarker?](count: 100, repeatedValue: nil)
+    var groupMems = [String: [String: String]]()   // list of people in group
+    var uberMems = [String: [String: String]]()   // list of people in group
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let camera = GMSCameraPosition.cameraWithLatitude(-33.868,
-            longitude:151.2086, zoom:6)
+        let camera = GMSCameraPosition.cameraWithLatitude(-33.868, longitude:151.2086, zoom:6)
         var mapView = GMSMapView.mapWithFrame(self.view.bounds, camera:camera)
         mapView.delegate = self
-        let numPeopleInGroup = 6 // number of people in the group
         var bounds = GMSCoordinateBounds() // coord bounds
         
-        // friend locations
+        
+        // updating from database
+        var memberRef = myRootRef.childByAppendingPath("group1/members/")
+        var uberRef = myRootRef.childByAppendingPath("group1/ubers/")
+        
+        memberRef.observeEventType(FEventType.Value, withBlock: {
+            snapshot in let json = JSON(snapshot.value)
+            for (r , k) in json {
+                for (key, val) in k {
+                    self.groupMems[String(r)] = [String(key):String(val)]
+                }
+            }
+        })
+       // var numPeopleInGroup = self.groupMems.count // number of people in the group
+        var numPeopleInGroup = 6
+        
+        uberRef.observeEventType(FEventType.Value, withBlock: {
+            snapshot in let json = JSON(snapshot.value)
+            for (r , k) in json {
+                for (key, val) in k {
+                    self.uberMems[String(r)] = [String(key):String(val)]
+                }
+            }
+        })
+        var numUbers = self.groupMems.count // number of people in the group
+        
+        
+        // battery things
+        // battery
+        /*UIDevice.currentDevice().batteryMonitoringEnabled = true
+        m.snippet = "Battery: \(UIDevice.currentDevice().batteryLevel)"
+        // friend locations*/
         // TODO: the title of each marker will be the friend's initials
         let base = CLLocation(latitude: -33.868, longitude: 151.2086)
+        
+        /*
+        WHEN THE DATABASE HAS REAL THINGS
+        for (r in groupMems) {
+            let latlong = groupMems[r][Location].characters.split{$0 == " "}.map(String.init)
+            let posx: CLLocationDegrees = CGFloat(latlong[0])
+            let posy: CLLocationDegrees = CGFloat(latlong[1])
+            let coord = CLLocationCoordinate2DMake(posx, posy)
+            bounds.includingCoordinate(coord)
+            var m = GMSMarker()
+            m.position = coord
+            m.icon = UIImage(named: "smiley-face")
+            
+            // distance from current user
+            let ccoord = CLLocation(latitude: coord.latitude, longitude: coord.longitude)
+            let dist = Double(round((ccoord.distanceFromLocation(base)/1000) * Double(0.62137) * 10)/10)
+            m.title = "\(groupMems[r][Name])  \(dist) mi"
+            
+        
+            
+            m.appearAnimation = kGMSMarkerAnimationPop
+            m.map = mapView
+            markers[i] = m
+        }
+        */
+        
         for i in 0...(numPeopleInGroup-1) {
             let posx: CLLocationDegrees = -33.868 + Double(i)
             let posy: CLLocationDegrees = 151.2086 - Double(i)
@@ -34,13 +94,16 @@ class MapViewController: UIViewController, GMSMapViewDelegate, UIPopoverPresenta
             bounds.includingCoordinate(coord)
             var m = GMSMarker()
             m.position = coord
-            m.title = String(i)
             m.icon = UIImage(named: "smiley-face")
             
             // distance from current user
             let ccoord = CLLocation(latitude: coord.latitude, longitude: coord.longitude)
             let dist = Double(round((ccoord.distanceFromLocation(base)/1000) * Double(0.62137) * 10)/10)
-            m.snippet = String("\(dist) mi")
+            m.title = "\(String(i))  \(dist) mi"
+            
+            // battery
+            UIDevice.currentDevice().batteryMonitoringEnabled = true
+            m.snippet = "Battery: \(UIDevice.currentDevice().batteryLevel)"
             
             m.appearAnimation = kGMSMarkerAnimationPop
             m.map = mapView
@@ -54,53 +117,20 @@ class MapViewController: UIViewController, GMSMapViewDelegate, UIPopoverPresenta
     }
     
     
-    /*func mapView(mapView: GMSMapView!, markerInfoWindow marker: GMSMarker!) -> UIView {
-        let popupWidth = UIScreen.mainScreen().bounds.width
-        let contentWidth = 180
-        let contentPad = 10
-        let popupHeight = 140
-        let popupBottomPadding = 16
-        let popupContentHeight = popupHeight - popupBottomPadding
-        
-        var outerView = UIView(frame: CGRectMake(CGFloat(0), CGFloat(0), CGFloat(popupWidth), CGFloat(popupHeight)))
-        
-        var view = UIView(frame: CGRectMake(CGFloat(0), CGFloat(0), CGFloat(popupWidth), CGFloat(popupHeight)))
-        view.backgroundColor = UIColor.whiteColor()
-        
-        var titleLabel = UILabel(frame: CGRectMake(CGFloat(contentPad), CGFloat(0), CGFloat(contentWidth), CGFloat(0)))
-        titleLabel.font = UIFont(name: titleLabel.font.fontName, size:17.0)
-        titleLabel.text = marker.title
-        
-        var descriptionLabel = UILabel(frame: CGRectMake(CGFloat(contentPad), CGFloat(24), CGFloat(contentWidth), CGFloat(20)))
-        descriptionLabel.font = UIFont(name: descriptionLabel.font.fontName, size: 11.0)
-        descriptionLabel.text = marker.snippet
-        
-        view.addSubview(titleLabel)
-        view.addSubview(descriptionLabel)
-        
-        return view
-        
-        
-    }*/
-    
-    func mapView(mapView: GMSMapView!, didTapMarker marker: GMSMarker!) -> Bool {
-        
-        
-        //(mapVC, animated: true, completion: nil)
-        
-        return true
+    /*func mapView(mapView: GMSMapView!, markerInfoWindow marker: GMSMarker!) -> UIView! {
+        marker.infoWindowAnchor = CGPointMake(0.44, 0.45)
+        var view =  NSBundle.mainBundle().loadNibNamed("MapInfoWindow", owner:self, options:nil)[0] as! UIView
+        //view.name.text = marker.title
+        //view.distance.text = "\(dist) mi"
+        //view.placeImage.image = [UIImage imageNamed:@"customPlaceImage"];
+        //view.placeImage.transform = CGAffineTransformMakeRotation(-.08);
+        return view;
     }
-    
-    @IBAction func tapCallDirections(sender: UIButton) {
-        
-        
-    }
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
+    }*/
     
     
     /*

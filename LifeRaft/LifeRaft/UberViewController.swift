@@ -40,6 +40,8 @@ class UberViewController: UIViewController, UITableViewDataSource, UITableViewDe
 //            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
 //            locationManager.startUpdatingLocation()
 //        }
+        
+      
         getClosestUber()
         uberTable.dataSource = self
         uberTable.delegate = self
