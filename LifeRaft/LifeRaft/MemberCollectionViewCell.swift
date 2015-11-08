@@ -13,4 +13,6 @@ class MemberCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var myNameLabel: UILabel!
     @IBOutlet weak var myStatusLabel: UILabel!
     @IBOutlet weak var myImageView: UIImageView!
+    
+    
 }

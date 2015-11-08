@@ -23,6 +23,7 @@ class UberViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var uberToGet : String = ""
     var myHeader = ["Authorization": "Bearer blSLfPsmxbbwfvDiGxnHKtNgpZLy8g"]
     var buttonArray = [UIButton]()
+    var infoArray = [UIButton]()
    // let locationManager = CLLocationManager()
     
     
@@ -71,6 +72,23 @@ class UberViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.uberTable.reloadData()
 
     }
+    /*override func performSegueWithIdentifier(identifier: String, sender: AnyObject?) {
+        if identifier == "WEB_VIEW"{
+            let destinationVC = identifier destinationViewController as! WebViewController
+            //destinationVC.textInput = sender
+        }
+
+    }*/
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        //if segue.identifier == "WEB_VIEW"{
+            let destinationVC = segue.destinationViewController as! MapViewController
+            //destinationVC.textInput = sender?.currentTitle
+       //performSegueWithIdentifier(
+        
+       // }
+               // map.delegate = self
+        
+    }
         // Do any additional setup after loading the view.
     func updateUberStatus(requestNum : String, status : String, index: Int){
         var stat = ["status": status]
@@ -106,6 +124,10 @@ class UberViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 print("****UBER TO get \(self.uberToGet)")
         }
 
+    }
+    func infoClicked(sender: UIButton!){
+        
+        performSegueWithIdentifier("map", sender: sender)
     }
     func buttonClicked(sender: UIButton!){
         print("joined uber")
@@ -170,14 +192,25 @@ class UberViewController: UIViewController, UITableViewDataSource, UITableViewDe
         //join.frame = CGRectMake(20, 20, 40, 20)
             
             cell.backgroundColor = UIColor(red:r, green: g, blue: b, alpha: 1.0)
+            let uberMap : UIButton = UIButton(type: UIButtonType.InfoLight)
+            uberMap.setTitle("\(uber["map"]!!)", forState: UIControlState.Normal)
+            uberMap.frame = CGRectMake(20,20,20,20)
+            uberMap.addTarget(self, action: "infoClicked:",  forControlEvents: UIControlEvents.TouchUpInside)
+            //uberMap.setValue(uber["map"]!!, forUndefinedKey: "url")
+            //uberMap.se
         let button : UIButton = UIButton(type: UIButtonType.Custom) as UIButton
         button.frame = CGRectMake(20, 20, 80, 20)
             //cell.backgroundColor = UIColor.blueColor()
         let cellHeight: CGFloat = 110.0
+            uberMap.center=CGPoint(x:view.bounds.width/2.0, y:cellHeight/2.0)
         //join.center = CGPoint(x: view.bounds.width - 60, y:cellHeight/2.0)
-        //join.addTarget(self, action: "buttonClicked:", forControlEvents:  UIControlEvents.ValueChanged)
+            uberMap.backgroundColor = UIColor.whiteColor()
+            cell.addSubview(uberMap)
+        infoArray.append(uberMap)
+            //join.addTarget(self, action: "buttonClicked:", forControlEvents:  UIControlEvents.ValueChanged)
        button.center = CGPoint(x: view.bounds.width - 100, y:cellHeight/2.0)
         button.addTarget(self, action: "buttonClicked:", forControlEvents:  UIControlEvents.TouchUpInside)
+            
         button.tag = indexPath.row
             button.backgroundColor = UIColor(red:r, green: g, blue: b, alpha: 1.0)
             //button.titleLabel?.
@@ -187,7 +220,7 @@ class UberViewController: UIViewController, UITableViewDataSource, UITableViewDe
         button.setTitle("join", forState: UIControlState.Normal)
             button.setTitleColor(UIColor.greenColor(), forState: UIControlState.Normal)
         if uber["status"]! == "accepted"{
-        cell.textLabel?.text="ETA: \(uber["eta"]!!)  Driver name: \(uber["driver name"]!!)"
+        cell.textLabel?.text="ETA: \(uber["eta"]!!)"
             cell.textLabel?.textColor = UIColor.whiteColor()
             cell.backgroundColor = UIColor(red:r, green: g, blue: b, alpha: 1.0)
         
@@ -207,6 +240,7 @@ class UberViewController: UIViewController, UITableViewDataSource, UITableViewDe
         else{
             let cell:UITableViewCell=UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "mycell")
             let uber = currentUbers[indexPath.row]
+            cell.backgroundColor = UIColor(red:r, green: g, blue: b, alpha: 1.0)
             print("row \(indexPath.row) and button \(buttonArray.count)")
             //let join : UISwitch = UISwitch()
             //join.frame = CGRectMake(20, 20, 40, 20)
@@ -224,9 +258,10 @@ class UberViewController: UIViewController, UITableViewDataSource, UITableViewDe
             // button.t
             button.setTitle("join", forState: UIControlState.Normal)
 */          let button = buttonArray[indexPath.row]
+            let info = infoArray[indexPath.row]
             print("\(button.state)")
             if uber["status"]! == "accepted"{
-                cell.textLabel?.text="ETA: \(uber["eta"]!!)  Driver name: \(uber["driver name"]!!)"
+                cell.textLabel?.text="ETA: \(uber["eta"]!!)"
                 cell.textLabel?.textColor = UIColor.whiteColor()
                 cell.backgroundColor = UIColor(red:r, green: g, blue: b, alpha: 1.0)
             }
@@ -237,6 +272,7 @@ class UberViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }
             cell.detailTextLabel?.text="Riders \(uber["riders"]!!) Open Spots: \(uber["open spots"]!!)"
             cell.detailTextLabel?.textColor = UIColor.whiteColor()
+            cell.addSubview(info)
             cell.addSubview(button)
             //buttonArray.append(button)
             return cell
@@ -319,6 +355,16 @@ class UberViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func requestInfo(currentRequest: String, add : Bool)->String{
         var requestDetails : [String: AnyObject] = ["request_id":currentRequest]
+        var mapLink : String = ""
+        Alamofire.request(.GET, "https://sandbox-api.uber.com/v1/requests/\(currentRequest)/map", encoding: .JSON, headers: myHeader)
+            .responseJSON{ response in
+                if let value = response.result.value{
+                    let json = JSON(value)
+                    print(json)
+                    mapLink = json["href"].string!
+                    
+                }
+        }
         Alamofire.request(.GET, "https://sandbox-api.uber.com/v1/requests/\(currentRequest)", encoding: .JSON, headers: myHeader)
             
             .responseJSON{ response in
@@ -331,8 +377,9 @@ class UberViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 if let value = response.result.value{
                     print(value)
                     let json = JSON(value)
+                   
                     var uberInfo : [String: String?]
-                    uberInfo = ["eta":"\(json["eta"].int!)", "driver name":json["driver"]["name"].string,"riders":"","request":currentRequest, "status":json["status"].string,"open spots":"\(3)", "latitude":"\(json["location"]["latitude"])","longitude":"\(json["location"]["longitude"])"]
+                    uberInfo = ["eta":"\(json["eta"].int!)", "driver name":json["driver"]["name"].string,"riders":"","request":currentRequest, "status":json["status"].string,"open spots":"\(3)", "latitude":"\(json["location"]["latitude"])","longitude":"\(json["location"]["longitude"])","map":"\(mapLink)"]
                     //"latitude":json["location"]["latitude"].float.description
                     if add{
                     self.currentUbers.append(uberInfo)
