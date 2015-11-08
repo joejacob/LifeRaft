@@ -9,6 +9,8 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import Firebase
+
 //import CoreLocation
 
 class UberViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
@@ -330,7 +332,7 @@ class UberViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     print(value)
                     let json = JSON(value)
                     var uberInfo : [String: String?]
-                    uberInfo = ["eta":"\(json["eta"].int!)", "driver name":json["driver"]["name"].string,"riders":"","request":currentRequest, "status":json["status"].string,"open spots":"\(3)"]
+                    uberInfo = ["eta":"\(json["eta"].int!)", "driver name":json["driver"]["name"].string,"riders":"","request":currentRequest, "status":json["status"].string,"open spots":"\(3)", "latitude":"\(json["location"]["latitude"])","longitude":"\(json["location"]["longitude"])"]
                     //"latitude":json["location"]["latitude"].float.description
                     if add{
                     self.currentUbers.append(uberInfo)
@@ -340,6 +342,7 @@ class UberViewController: UIViewController, UITableViewDataSource, UITableViewDe
                         self.currentUbers.append(uberInfo)
                         
                     }
+                    
                     self.uberTable.reloadData()
                     
                     print("current ubers \(self.currentUbers)")
