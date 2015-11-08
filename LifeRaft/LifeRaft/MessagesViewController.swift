@@ -8,73 +8,37 @@
 
 import UIKit
 
-class MessagesViewController: UIViewController {
+class MessagesViewController: UIViewController, UITextFieldDelegate {
 
     
-    @IBOutlet var bottomConstraint: NSLayoutConstraint!
+    @IBOutlet var messageField: UITextField!
+    
+    var myMessages = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil);
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
-        
+        self.messageField.delegate = self
     }
-    
-    func textFieldDidBeginEditing(textField: UITextField) { // became first responder
-        
-        //move textfields up
-        let myScreenRect: CGRect = UIScreen.mainScreen().bounds
-        let keyboardHeight : CGFloat = 216
-        
-        UIView.beginAnimations( "animateView", context: nil)
-        var movementDuration:NSTimeInterval = 0.35
-        var needToMove: CGFloat = 0
-        
-        var frame : CGRect = self.view.frame
-        if (textField.frame.origin.y + textField.frame.size.height + /*self.navigationController.navigationBar.frame.size.height + */UIApplication.sharedApplication().statusBarFrame.size.height > (myScreenRect.size.height - keyboardHeight)) {
-            needToMove = (textField.frame.origin.y + textField.frame.size.height + /*self.navigationController.navigationBar.frame.size.height +*/ UIApplication.sharedApplication().statusBarFrame.size.height) - (myScreenRect.size.height - keyboardHeight);
-        }
-        
-        frame.origin.y -= needToMove
-        self.view.frame = frame
-        UIView.commitAnimations()
-    }
-    
-    func textFieldDidEndEditing(textField: UITextField) {
-        //move textfields back down
-        UIView.beginAnimations( "animateView", context: nil)
-        var movementDuration:NSTimeInterval = 0.35
-        var frame : CGRect = self.view.frame
-        frame.origin.y = 0
-        self.view.frame = frame
-        UIView.commitAnimations()
-    }
-    
-    func keyboardWillShow(notification:NSNotification) {
-        adjustingHeight(true, notification: notification)
-    }
-    
-    func keyboardWillHide(notification:NSNotification) {
-        adjustingHeight(false, notification: notification)
-    }
-
-    func adjustingHeight(show:Bool, notification:NSNotification) {
-         1
-        var userInfo = notification.userInfo!
-         2
-        let keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).CGRectValue()
-         3
-        let animationDurarion = userInfo[UIKeyboardAnimationDurationUserInfoKey] as! NSTimeInterval
-         4
-        let changeInHeight = (CGRectGetHeight(keyboardFrame)) * (show ? 1 : -1)
-        5
-        UIView.animateWithDuration(animationDurarion, animations: { () -> Void in
-            self.bottomConstraint.constant += changeInHeight
-        })
-        
-    }
+    @IBOutlet weak var bottomCons: NSLayoutConstraint!
     
     
+    func keyboardWillShow(sender: NSNotification) {
+        let info:NSDictionary = sender.userInfo!
+        let keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as! NSValue).CGRectValue()
+        bottomCons!.constant = keyboardSize.height
+    }
+    func keyboardWillHide(sender: NSNotification) {
+        bottomCons!.constant = 8
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        myMessages.append(textField.text!)
+        textField.text = ""
+        self.view.endEditing(true)
+        return false
+    }
     /*func keyboardWillShow(notification: NSNotification) {
         let info:NSDictionary = notification.userInfo!
         let keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as! NSValue).CGRectValue()
