@@ -33,6 +33,13 @@ class BlueToothViewController: UIViewController, UITableViewDataSource, UITableV
             groupId.setValue([id: s])
         }
         
+        
+        let rgbValue = 0x4863a0
+        let r = CGFloat((rgbValue & 0xFF0000) >> 16)/255.0
+        let g = CGFloat((rgbValue & 0xFF00) >> 8)/255.0
+        let b = CGFloat((rgbValue & 0xFF))/255.0
+        memberTable.backgroundColor = UIColor(red:r, green: g, blue: b, alpha: 1.0)
+        
         self.connectedDevicesChanged(self.blueTooth, connectedDevices: self.connections)
         self.blueTooth.delegate = self
         self.memberTable.delegate = self
@@ -66,10 +73,15 @@ class BlueToothViewController: UIViewController, UITableViewDataSource, UITableV
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
-        
+            let rgbValue = 0x4863a0
+            let r = CGFloat((rgbValue & 0xFF0000) >> 16)/255.0
+            let g = CGFloat((rgbValue & 0xFF00) >> 8)/255.0
+            let b = CGFloat((rgbValue & 0xFF))/255.0
             let cell:UITableViewCell=UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "mycell")
             let newMember = connections[indexPath.row]
+            cell.backgroundColor = UIColor(red:r, green: g, blue: b, alpha: 1.0)
             cell.textLabel?.text="Name: \(newMember)"
+            cell.textLabel?.textColor=UIColor.whiteColor()
             return cell
     }
 
