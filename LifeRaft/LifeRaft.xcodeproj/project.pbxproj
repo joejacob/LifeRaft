@@ -20,6 +20,7 @@
 		19A41DD01BEE68FC00C96159 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 19A41DC21BEE68E400C96159 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		19A41DD41BEE690B00C96159 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19A41DAA1BEE68D500C96159 /* SwiftyJSON.framework */; };
 		19A41DD51BEE690B00C96159 /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 19A41DAA1BEE68D500C96159 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		19C11EF31BEF747A0041DCD7 /* FacebookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C11EF21BEF747A0041DCD7 /* FacebookViewController.swift */; };
 		19DE8D441BEEF76D00156230 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19DE8D431BEEF76D00156230 /* HomeViewController.swift */; };
 		4C0F2FE21BEE7B730061A122 /* UberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F2FE11BEE7B730061A122 /* UberViewController.swift */; };
 		4C1A10C41BEF35B5003E3257 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1A10C31BEF35B5003E3257 /* WebViewController.swift */; };
@@ -177,6 +178,7 @@
 		19289CDE1BEECD68002F906B /* MessagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
 		19A41D9F1BEE68D400C96159 /* SwiftyJSON.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftyJSON.xcodeproj; path = ../SwiftyJSON/SwiftyJSON.xcodeproj; sourceTree = "<group>"; };
 		19A41DB71BEE68E400C96159 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = ../Alamofire/Alamofire.xcodeproj; sourceTree = "<group>"; };
+		19C11EF21BEF747A0041DCD7 /* FacebookViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookViewController.swift; sourceTree = "<group>"; };
 		19DE8D431BEEF76D00156230 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		4C0F2FE11BEE7B730061A122 /* UberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UberViewController.swift; sourceTree = "<group>"; };
 		4C1A10C31BEF35B5003E3257 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 				1903C8631BEC752D005CD107 /* AppDelegate.swift */,
 				1903C8651BEC752D005CD107 /* FirstViewController.swift */,
 				1903C8691BEC752D005CD107 /* Main.storyboard */,
+				19C11EF21BEF747A0041DCD7 /* FacebookViewController.swift */,
 				19DE8D431BEEF76D00156230 /* HomeViewController.swift */,
 				D341BEC41BEEEDAA0059D991 /* MapViewController.swift */,
 				702EBA2A1BEED72E005480DD /* BlueToothViewController.swift */,
@@ -535,6 +538,7 @@
 			files = (
 				19289CDF1BEECD68002F906B /* MessagesViewController.swift in Sources */,
 				4C0F2FE21BEE7B730061A122 /* UberViewController.swift in Sources */,
+				19C11EF31BEF747A0041DCD7 /* FacebookViewController.swift in Sources */,
 				19289CC71BEE9AD4002F906B /* HomeTitleCollectionReusableView.swift in Sources */,
 				19289CDD1BEEC9E4002F906B /* MessageTableViewCell.swift in Sources */,
 				19289CC51BEE9A55002F906B /* MemberCollectionViewCell.swift in Sources */,
