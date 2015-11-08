@@ -13,14 +13,15 @@ class MessagesViewController: UIViewController, UITextFieldDelegate,UITableViewD
     
     @IBOutlet var messageField: UITextField!
     
+    @IBOutlet weak var tableMessages: UITableView!
     public var myMessages = [String]()
     
-    @IBOutlet weak var tableMessages: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil);
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
         self.messageField.delegate = self
+        print("STARTTTTTTTTT")
         self.tableMessages.delegate = self
         self.tableMessages.dataSource = self
         let rgbValue = 0x4863a0
@@ -71,6 +72,10 @@ class MessagesViewController: UIViewController, UITextFieldDelegate,UITableViewD
         let id = myRootRef.childByAppendingPath("group1/chat/").childByAutoId()
         //let charRef = myRootRef.childByAppendingPath("group1/chat/")
         id.setValue("\(myFullName) \(newMember)")
+        
+        let note  = SendNotification()
+        var notification = UILocalNotification()
+        note.notify(notification, reason: "hi", note: "\(myFullName) \(newMember)")
         
         cell.textLabel?.textColor=UIColor.whiteColor()
         return cell
