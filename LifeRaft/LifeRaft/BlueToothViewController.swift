@@ -83,7 +83,6 @@ extension ColorSwitchViewController : BluetoothManagerDelegate {
     
     func connectedDevicesChanged(manager: BluetoothManager, connectedDevices: [String]) {
         NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
-            self.connectionsLabel.text = "Connections: \(connectedDevices)"
             self.connections = connectedDevices
             self.memberTable.reloadData()
             

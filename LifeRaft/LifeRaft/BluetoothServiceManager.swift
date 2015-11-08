@@ -74,7 +74,7 @@ extension BluetoothManager : MCNearbyServiceBrowserDelegate {
     func browser(browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String : String]?) {
         NSLog("%@", "foundPeer: \(peerID)")
         NSLog("%@", "invitePeer: \(peerID)")
-        browser.invitePeer(peerID, toSession: self.session, withContext: nil, timeout: 10)
+        browser.invitePeer(peerID, toSession: self.session, withContext: nil, timeout: 120)
     }
     
     func browser(browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID) {
