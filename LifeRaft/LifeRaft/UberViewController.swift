@@ -20,6 +20,7 @@ class UberViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var nextUber = [String]()
     var uberToGet : String = ""
     var myHeader = ["Authorization": "Bearer blSLfPsmxbbwfvDiGxnHKtNgpZLy8g"]
+    var buttonArray = [UIButton]()
    // let locationManager = CLLocationManager()
     
     
@@ -101,11 +102,33 @@ class UberViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     }
     func buttonClicked(sender: UIButton!){
-        currentUbers[sender.tag]["riders"]!! += " name"
+        print("joined uber")
+        
+        var status : String? = "join"
+        if !sender.selected {
+            sender.selected = true
+            
+            sender.setTitle("leave", forState: UIControlState.Selected)
+            sender.backgroundColor = UIColor.redColor()
+            //nder.setOn(true, animated: true)
+            //sender.setOn(true, animated: true)
+            currentUbers[sender.tag]["riders"]!! += " name"
+            var i:Int? = Int(currentUbers[sender.tag]["open spots"]!!)
+            i!--
+            currentUbers[sender.tag]["open spots"] = "\(i!)"
+            self.uberTable.reloadData()
+        }
+        else{
+            //sender.setOn(false, animated:true)
+            sender.selected = false
+            sender.backgroundColor = UIColor.greenColor()
+            sender.setTitle("join", forState: UIControlState.Normal)
+        currentUbers[sender.tag]["riders"]!! = currentUbers[sender.tag]["riders"]!!.stringByReplacingOccurrencesOfString(" name", withString: "")
         var i:Int? = Int(currentUbers[sender.tag]["open spots"]!!)
-        i!--
+        i!++
         currentUbers[sender.tag]["open spots"] = "\(i!)"
         self.uberTable.reloadData()
+        }
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int
@@ -121,14 +144,28 @@ class UberViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell!
     {
+        if(indexPath.row>buttonArray.count-1){
+            print("\(indexPath.row) is greater than \(buttonArray.count-1)")
         let cell:UITableViewCell=UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "mycell")
         let uber = currentUbers[indexPath.row]
-        let button : UIButton = UIButton(type: UIButtonType.ContactAdd) as UIButton
-        button.frame = CGRectMake(20, 20, 20, 20)
-        let cellHeight: CGFloat = 44.0
-        button.center = CGPoint(x: view.bounds.width - 40, y:cellHeight/2.0)
+        //let join : UISwitch = UISwitch()
+        //join.frame = CGRectMake(20, 20, 40, 20)
+        
+        let button : UIButton = UIButton(type: UIButtonType.Custom) as UIButton
+        button.frame = CGRectMake(20, 20, 80, 20)
+            
+        let cellHeight: CGFloat = 110.0
+        //join.center = CGPoint(x: view.bounds.width - 60, y:cellHeight/2.0)
+        //join.addTarget(self, action: "buttonClicked:", forControlEvents:  UIControlEvents.ValueChanged)
+       button.center = CGPoint(x: view.bounds.width - 100, y:cellHeight/2.0)
         button.addTarget(self, action: "buttonClicked:", forControlEvents:  UIControlEvents.TouchUpInside)
         button.tag = indexPath.row
+            button.backgroundColor = UIColor.greenColor()
+            //button.titleLabel?.
+        //join.tag = indexPath.row
+        //join.setOn(false, animated:true)
+       // button.t
+        button.setTitle("join", forState: UIControlState.Normal)
         if uber["status"]! == "accepted"{
         cell.textLabel?.text="ETA: \(uber["eta"]!!)  Driver name: \(uber["driver name"]!!)"
         
@@ -140,8 +177,47 @@ class UberViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.detailTextLabel?.text="Riders \(uber["riders"]!!) Open Spots: \(uber["open spots"]!!)"
         
         cell.addSubview(button)
-    
-        return cell
+            print("adding button")
+        buttonArray.append(button)
+            return cell
+        }
+        else{
+            let cell:UITableViewCell=UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "mycell")
+            let uber = currentUbers[indexPath.row]
+            print("row \(indexPath.row) and button \(buttonArray.count)")
+            //let join : UISwitch = UISwitch()
+            //join.frame = CGRectMake(20, 20, 40, 20)
+            /*
+            let button : UIButton = UIButton(type: UIButtonType.ContactAdd) as UIButton
+            button.frame = CGRectMake(20, 20, 20, 20)
+            let cellHeight: CGFloat = 110.0
+            //join.center = CGPoint(x: view.bounds.width - 60, y:cellHeight/2.0)
+            //join.addTarget(self, action: "buttonClicked:", forControlEvents:  UIControlEvents.ValueChanged)
+            button.center = CGPoint(x: view.bounds.width - 45, y:cellHeight/2.0)
+            button.addTarget(self, action: "buttonClicked:", forControlEvents:  UIControlEvents.TouchUpInside)
+            button.tag = indexPath.row
+            //join.tag = indexPath.row
+            //join.setOn(false, animated:true)
+            // button.t
+            button.setTitle("join", forState: UIControlState.Normal)
+*/          let button = buttonArray[indexPath.row]
+            print("\(button.state)")
+            if uber["status"]! == "accepted"{
+                cell.textLabel?.text="ETA: \(uber["eta"]!!)  Driver name: \(uber["driver name"]!!)"
+                
+            }
+            else{
+                cell.textLabel?.text = "Status: \(uber["status"]!!)"
+                //cell.detailTextLabel?.text="Riders"
+            }
+            cell.detailTextLabel?.text="Riders \(uber["riders"]!!) Open Spots: \(uber["open spots"]!!)"
+            
+            cell.addSubview(button)
+            //buttonArray.append(button)
+            return cell
+        }
+        
+        //return cell
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -237,7 +313,7 @@ class UberViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     self.currentUbers.append(uberInfo)
                     }
                     else{
-                        self.currentUbers.removeFirst()
+                        self.currentUbers.removeLast()
                         self.currentUbers.append(uberInfo)
                         
                     }
