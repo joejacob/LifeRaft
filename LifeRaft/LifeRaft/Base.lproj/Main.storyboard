@@ -406,7 +406,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="9Pe-p8-mGC">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="9Pe-p8-mGC">
                                 <rect key="frame" x="0.0" y="103" width="600" height="497"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -426,23 +426,32 @@
                                             <rect key="frame" x="0.0" y="0.0" width="163" height="126"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c1z-i8-aFJ">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="c1z-i8-aFJ">
                                                     <rect key="frame" x="8" y="33" width="60" height="60"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="60" id="1yP-wo-nhM"/>
+                                                    </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="khX-Od-YvB">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="khX-Od-YvB">
                                                     <rect key="frame" x="72" y="83" width="83" height="19"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="19" id="SqU-iu-iMb"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Battery" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dba-Ma-GqT">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Battery" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dba-Ma-GqT">
                                                     <rect key="frame" x="75" y="59" width="88" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Distance" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="APE-el-7gv">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="APE-el-7gv">
                                                     <rect key="frame" x="74" y="34" width="81" height="19"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="19" id="wxj-QP-OyR"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -462,7 +471,9 @@
                                             <constraint firstItem="dba-Ma-GqT" firstAttribute="top" secondItem="APE-el-7gv" secondAttribute="bottom" constant="6" id="59Y-q3-G83"/>
                                             <constraint firstItem="c1z-i8-aFJ" firstAttribute="top" secondItem="JfP-DI-shJ" secondAttribute="bottom" constant="4" id="8b1-MC-iuL"/>
                                             <constraint firstAttribute="topMargin" secondItem="JfP-DI-shJ" secondAttribute="top" id="Br1-x9-y62"/>
+                                            <constraint firstItem="c1z-i8-aFJ" firstAttribute="centerY" secondItem="2Bm-ml-LBl" secondAttribute="centerY" id="HPQ-k9-hya"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="khX-Od-YvB" secondAttribute="trailing" id="I6C-x5-Jfg"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="khX-Od-YvB" secondAttribute="bottom" constant="16" id="J24-iq-UDT"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="JfP-DI-shJ" secondAttribute="trailing" id="MW5-Hx-08E"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="dba-Ma-GqT" secondAttribute="trailing" constant="-8" id="VhC-Cu-DEh"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="APE-el-7gv" secondAttribute="trailing" id="WB3-ph-ufs"/>
@@ -470,6 +481,7 @@
                                             <constraint firstItem="dba-Ma-GqT" firstAttribute="leading" secondItem="c1z-i8-aFJ" secondAttribute="trailing" constant="7" id="cfK-uA-DZp"/>
                                             <constraint firstItem="khX-Od-YvB" firstAttribute="top" secondItem="dba-Ma-GqT" secondAttribute="bottom" constant="3" id="ecw-bK-tce"/>
                                             <constraint firstItem="khX-Od-YvB" firstAttribute="leading" secondItem="c1z-i8-aFJ" secondAttribute="trailing" constant="4" id="nTi-dc-4Ah"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="c1z-i8-aFJ" secondAttribute="bottom" constant="25" id="xck-ch-AWV"/>
                                             <constraint firstAttribute="leadingMargin" secondItem="c1z-i8-aFJ" secondAttribute="leading" id="xga-QJ-wtg"/>
                                             <constraint firstItem="APE-el-7gv" firstAttribute="leading" secondItem="c1z-i8-aFJ" secondAttribute="trailing" constant="6" id="yy9-aW-dz9"/>
                                         </constraints>
@@ -485,19 +497,7 @@
                                     <outlet property="delegate" destination="JjX-ia-HU9" id="wBw-Lg-ic7"/>
                                 </connections>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UWr-n7-kAk">
-                                <rect key="frame" x="433" y="65" width="147" height="30"/>
-                                <state key="normal" title="Join another Raft!">
-                                    <color key="titleColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R8d-v8-wjW">
-                                <rect key="frame" x="20" y="65" width="128" height="30"/>
-                                <state key="normal" title="Start a new Raft!">
-                                    <color key="titleColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LifeRaft" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Ip-Xm-yhQ">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="LifeRaft" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Ip-Xm-yhQ">
                                 <rect key="frame" x="240" y="20" width="121" height="36"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="36" id="23h-um-iWD"/>
@@ -507,20 +507,19 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UWr-n7-kAk">
+                                <rect key="frame" x="227" y="64" width="147" height="30"/>
+                                <state key="normal" title="Create / Join a Raft!">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="9Pe-p8-mGC" firstAttribute="top" secondItem="UWr-n7-kAk" secondAttribute="bottom" constant="8" symbolic="YES" id="2Pl-4G-MfK"/>
-                            <constraint firstItem="9Pe-p8-mGC" firstAttribute="leading" secondItem="OsK-CH-hLU" secondAttribute="leading" id="3oU-kP-1sb"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="R8d-v8-wjW" secondAttribute="leading" id="EsT-tZ-bnX"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="UWr-n7-kAk" secondAttribute="trailing" id="G8K-UC-Fs6"/>
-                            <constraint firstItem="2Ip-Xm-yhQ" firstAttribute="centerX" secondItem="OsK-CH-hLU" secondAttribute="centerX" id="I4h-ZU-L5u"/>
                             <constraint firstItem="UWr-n7-kAk" firstAttribute="top" secondItem="2Ip-Xm-yhQ" secondAttribute="bottom" constant="9" id="Qac-zh-7Re"/>
                             <constraint firstItem="9Pe-p8-mGC" firstAttribute="centerX" secondItem="2Ip-Xm-yhQ" secondAttribute="centerX" id="eQx-5W-0Sn"/>
-                            <constraint firstItem="9Pe-p8-mGC" firstAttribute="top" secondItem="R8d-v8-wjW" secondAttribute="bottom" constant="8" symbolic="YES" id="hfl-2M-Sv3"/>
-                            <constraint firstItem="R8d-v8-wjW" firstAttribute="top" secondItem="2Ip-Xm-yhQ" secondAttribute="bottom" constant="9" id="n0Q-U6-o8b"/>
                             <constraint firstItem="2Ip-Xm-yhQ" firstAttribute="top" secondItem="mGc-zC-T21" secondAttribute="bottom" id="p0c-t2-nhz"/>
-                            <constraint firstAttribute="bottom" secondItem="9Pe-p8-mGC" secondAttribute="bottom" id="ytt-nn-UlG"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="MyRaft" image="first" id="eM2-SU-6Zz"/>
