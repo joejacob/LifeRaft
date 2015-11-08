@@ -46,17 +46,22 @@ class UberViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
       
         getClosestUber()
+        
         uberTable.dataSource = self
         uberTable.delegate = self
-        for var u in currentUbers{
-            requestInfo(u["request"]!!,add:false)
-        }
+        
 //        for var u in currentUbers{
-//            updateUberStatus(u["request"]!!, status: "processing")
+//            updateUberStatus(u["request"]!!, status: "accepted")
 //        }
         
     }
+    
     override func viewDidAppear(animated: Bool) {
+        getClosestUber()
+        uberTable.dataSource = self
+        uberTable.delegate = self
+        self.viewDidLoad()
+        
         var i = 0
         for var u in currentUbers{
             print("should make the status processs")
@@ -93,7 +98,9 @@ class UberViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func updateUberStatus(requestNum : String, status : String, index: Int){
         var stat = ["status": status]
         Alamofire.request(.PUT, "https://sandbox-api.uber.com/v1/sandbox/requests/\(requestNum)", parameters: stat, encoding: .JSON, headers: myHeader)
-        currentUbers[0]["status"]=status
+        for var uber in currentUbers{
+            uber["status"]=status
+        }
         
     }
     
@@ -112,7 +119,7 @@ class UberViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 if let value = response.result.value{
                     let valueJson = JSON(value)
                     for result in valueJson["times"].arrayValue{
-                        if result["display_name"].string!=="uberX"{
+                        if result["display_name"].string! == "uberX" {
                             self.uberETA.text!="ETA: \(result["estimate"].int!/60) minutes"
                             self.uberToGet = result["product_id"].string!
                         }
@@ -146,7 +153,10 @@ class UberViewController: UIViewController, UITableViewDataSource, UITableViewDe
             //sender.backgroundColor = UIColo
             //nder.setOn(true, animated: true)
             //sender.setOn(true, animated: true)
-            currentUbers[sender.tag]["riders"]!! += " name"
+            var num = 4 - Int(currentUbers[sender.tag]["open spots"]!!)!
+             var key = "\(num)"
+            
+            currentUbers[sender.tag]["\(key)"] = "\(UIDevice.currentDevice().name) "
             var i:Int? = Int(currentUbers[sender.tag]["open spots"]!!)
             i!--
             currentUbers[sender.tag]["open spots"] = "\(i!)"
@@ -158,7 +168,9 @@ class UberViewController: UIViewController, UITableViewDataSource, UITableViewDe
             sender.backgroundColor = UIColor(red:r, green: g, blue: b, alpha: 1.0)
              sender.setTitleColor(UIColor.greenColor(), forState: UIControlState.Normal)
             sender.setTitle("join", forState: UIControlState.Normal)
-        currentUbers[sender.tag]["riders"]!! = currentUbers[sender.tag]["riders"]!!.stringByReplacingOccurrencesOfString(" name", withString: "")
+            var key = "\(4-Int(currentUbers[sender.tag]["open spots"]!!)!)"
+            currentUbers[sender.tag]["\(key)"] = ""
+        // = currentUbers[sender.tag]["riders"]!!.stringByReplacingOccurrencesOfString("\(UIDevice.currentDevice().name)", withString: "")
         var i:Int? = Int(currentUbers[sender.tag]["open spots"]!!)
         i!++
         currentUbers[sender.tag]["open spots"] = "\(i!)"
@@ -191,6 +203,32 @@ class UberViewController: UIViewController, UITableViewDataSource, UITableViewDe
         //let join : UISwitch = UISwitch()
         //join.frame = CGRectMake(20, 20, 40, 20)
             
+            var bluetoothRef = myRootRef.childByAppendingPath("/group1/ubers/")
+            
+            var next = bluetoothRef.childByAppendingPath("/\(uber["request"]!!)")
+            let uberId = next.childByAppendingPath("/location")
+            let uberSender = next.childByAppendingPath("/caller")
+            let uberRiders = next.childByAppendingPath("/riders")
+            //var riders = uber["riders"]!!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+             //let riderArray = riders.componentsSeparatedByString(" ")
+            var riderDict : [String: String] = [String:String]()
+            for var i in 0..<3{
+                if uber.keys.contains("\(i)"){
+                riderDict["\(i)"] = "\(uber["\(i)"])"
+                //print("RIDERS \(i)")
+                }
+                
+            }
+            uberRiders.updateChildValues(riderDict)
+            uberSender.setValue("\(UIDevice.currentDevice().name)")
+            
+            uberId.setValue("\(uber["latitude"]!!) \(uber["longitude"]!!)")
+            
+            //uberId.
+            //id.setValue(s)
+            //groupId.setValue([id: s])
+            
+
             cell.backgroundColor = UIColor(red:r, green: g, blue: b, alpha: 1.0)
             let uberMap : UIButton = UIButton(type: UIButtonType.InfoLight)
             uberMap.setTitle("\(uber["map"]!!)", forState: UIControlState.Normal)
@@ -199,16 +237,16 @@ class UberViewController: UIViewController, UITableViewDataSource, UITableViewDe
             //uberMap.setValue(uber["map"]!!, forUndefinedKey: "url")
             //uberMap.se
         let button : UIButton = UIButton(type: UIButtonType.Custom) as UIButton
-        button.frame = CGRectMake(20, 20, 80, 20)
+        button.frame = CGRectMake(20, 20, 60, 20)
             //cell.backgroundColor = UIColor.blueColor()
         let cellHeight: CGFloat = 110.0
-            uberMap.center=CGPoint(x:view.bounds.width/2.0, y:cellHeight/2.0)
+            uberMap.center=CGPoint(x:view.bounds.width/2.0, y:cellHeight/3.0)
         //join.center = CGPoint(x: view.bounds.width - 60, y:cellHeight/2.0)
             uberMap.backgroundColor = UIColor.whiteColor()
             cell.addSubview(uberMap)
         infoArray.append(uberMap)
             //join.addTarget(self, action: "buttonClicked:", forControlEvents:  UIControlEvents.ValueChanged)
-       button.center = CGPoint(x: view.bounds.width - 100, y:cellHeight/2.0)
+       button.center = CGPoint(x: view.bounds.width - 100, y:cellHeight/3.0)
         button.addTarget(self, action: "buttonClicked:", forControlEvents:  UIControlEvents.TouchUpInside)
             
         button.tag = indexPath.row
@@ -230,7 +268,13 @@ class UberViewController: UIViewController, UITableViewDataSource, UITableViewDe
             cell.textLabel?.textColor = UIColor.whiteColor()
             //cell.detailTextLabel?.text="Riders"
         }
-        cell.detailTextLabel?.text="Riders \(uber["riders"]!!) Open Spots: \(uber["open spots"]!!)"
+            var riders : String = ""
+            for i in 0..<4{
+                if uber.keys.contains("\(i)"){
+                    riders+="\(uber["\(i)"]!!) "
+                }
+            }
+        cell.detailTextLabel?.text="Riders \(riders) Open Spots: \(uber["open spots"]!!)"
         cell.detailTextLabel?.textColor = UIColor.whiteColor()
         cell.addSubview(button)
             print("adding button")
@@ -242,6 +286,45 @@ class UberViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let uber = currentUbers[indexPath.row]
             cell.backgroundColor = UIColor(red:r, green: g, blue: b, alpha: 1.0)
             print("row \(indexPath.row) and button \(buttonArray.count)")
+            
+            var bluetoothRef = myRootRef.childByAppendingPath("/group1/ubers/")
+            
+            var next = bluetoothRef.childByAppendingPath("/\(uber["request"]!!)")
+            let uberId = next.childByAppendingPath("/location")
+            let uberSender = next.childByAppendingPath("/caller")
+            let uberRiders = next.childByAppendingPath("/riders")
+            //var riders = uber["riders"]!!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+            //let riderArray = riders.componentsSeparatedByString(" ")
+            var riderDict : [String: String] = [String:String]()
+            for var i in 0..<3{
+                if uber.keys.contains("\(i)"){
+                    riderDict["\(i)"] = "\(uber["\(i)"])"
+                    //print("RIDERS \(i)")
+                }
+                
+            }
+            uberRiders.updateChildValues(riderDict)
+            var riders : String = ""
+            for i in 0..<4{
+                if uber.keys.contains("\(i)"){
+                    riders+="\(uber["\(i)"]!!) "
+                }
+            }
+            uberSender.setValue("\(UIDevice.currentDevice().name)")
+            
+            uberId.setValue("\(uber["latitude"]!!) \(uber["longitude"]!!)")
+            /*var bluetoothRef = myRootRef.childByAppendingPath("/group1/ubers/")
+            
+            var next = bluetoothRef.childByAutoId()
+            let uberId = next.childByAppendingPath("/location")
+            let uberSender = next.childByAppendingPath("/caller")
+            let uberRiders = next.childByAppendingPath("/riders")
+            let riders = uber["riders"]!!.componentsSeparatedByString(" ")
+            for var i in riders{
+                let rider = uberRiders.childByAutoId()
+                rider.setValue(i)
+            }*/
+
             //let join : UISwitch = UISwitch()
             //join.frame = CGRectMake(20, 20, 40, 20)
             /*
@@ -270,7 +353,7 @@ class UberViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 cell.textLabel?.textColor = UIColor.whiteColor()
                 //cell.detailTextLabel?.text="Riders"
             }
-            cell.detailTextLabel?.text="Riders \(uber["riders"]!!) Open Spots: \(uber["open spots"]!!)"
+            cell.detailTextLabel?.text="Riders \(riders) Open Spots: \(uber["open spots"]!!)"
             cell.detailTextLabel?.textColor = UIColor.whiteColor()
             cell.addSubview(info)
             cell.addSubview(button)
@@ -324,7 +407,7 @@ class UberViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     //                    else{
                     //                        print("No available products")
                     //                    }
-                    
+                    self.updateUberStatus(currentRequest, status: "accepted", index: 0)
                     self.requestInfo(currentRequest, add:true)
                 }
                 //self.currentUbers.append(<#T##newElement: Array<String>##Array<String>#>)
@@ -379,8 +462,17 @@ class UberViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     let json = JSON(value)
                    
                     var uberInfo : [String: String?]
-                    uberInfo = ["eta":"\(json["eta"].int!)", "driver name":json["driver"]["name"].string,"riders":"","request":currentRequest, "status":json["status"].string,"open spots":"\(3)", "latitude":"\(json["location"]["latitude"])","longitude":"\(json["location"]["longitude"])","map":"\(mapLink)"]
+                    uberInfo = ["eta":"\(json["eta"].int!)", "driver name":json["driver"]["name"].string,"request":currentRequest, "status":json["status"].string,"open spots":"3", "latitude":"\(json["location"]["latitude"])","longitude":"\(json["location"]["longitude"])","map":"\(mapLink)"]
                     //"latitude":json["location"]["latitude"].float.description
+                    //var key = "\(4-Int(uberInfo["open spots"]!!)!)"
+                    uberInfo["0"] = "\(UIDevice.currentDevice().name)"
+                    var bluetoothRef = myRootRef.childByAppendingPath("/group1/ubers/")
+                    
+                    var next = bluetoothRef.childByAppendingPath("/\(uberInfo["request"]!!)")
+                    let uberId = next.childByAppendingPath("/location")
+                    let uberSender = next.childByAppendingPath("/caller")
+                    let uberRiders = next.childByAppendingPath("/riders")
+                    uberRiders.updateChildValues(["0":uberInfo["0"]!!])
                     if add{
                     self.currentUbers.append(uberInfo)
                     }
