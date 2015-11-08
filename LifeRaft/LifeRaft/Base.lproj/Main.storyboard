@@ -185,12 +185,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wJU-kj-o5c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1498" y="271"/>
+            <point key="canvasLocation" x="1524" y="1244"/>
         </scene>
-        <!--View Controller-->
+        <!--Color Switch View Controller-->
         <scene sceneID="G46-Eq-7Yd">
             <objects>
-                <viewController id="Qfc-td-LWy" sceneMemberID="viewController">
+                <viewController id="Qfc-td-LWy" customClass="ColorSwitchViewController" customModule="LifeRaft" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Whh-yr-DmC"/>
                         <viewControllerLayoutGuide type="bottom" id="PJY-XT-tpA"/>
@@ -199,7 +199,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MLJ-0b-py5">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MLJ-0b-py5">
                                 <rect key="frame" x="304" y="562" width="268" height="30"/>
                                 <animations/>
                                 <state key="normal" title="DONE"/>
@@ -215,7 +215,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0rR-Oa-L4A">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0rR-Oa-L4A">
                                 <rect key="frame" x="28" y="60" width="544" height="494"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -232,7 +232,7 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="spT-v0-Z3c">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="spT-v0-Z3c">
                                 <rect key="frame" x="28" y="562" width="268" height="30"/>
                                 <animations/>
                                 <state key="normal" title="CANCEL"/>
@@ -261,6 +261,9 @@
                             <constraint firstAttribute="trailingMargin" secondItem="MLJ-0b-py5" secondAttribute="trailing" constant="8" id="wq1-xL-bDG"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="memberTable" destination="0rR-Oa-L4A" id="tUN-8j-czi"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v27-GM-85n" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -352,6 +355,13 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EN4-7Z-mBR">
+                                <rect key="frame" x="70" y="35" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <segue destination="F8I-3v-yu4" kind="show" id="vff-C5-uha"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
