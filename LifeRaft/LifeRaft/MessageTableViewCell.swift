@@ -9,7 +9,7 @@
 import UIKit
 
 class MessageTableViewCell: UITableViewCell {
-
+    let myMess = MessagesViewController()
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -17,8 +17,7 @@ class MessageTableViewCell: UITableViewCell {
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+             // Configure the view for the selected state
     }
 
 }

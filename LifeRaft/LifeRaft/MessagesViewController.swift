@@ -13,7 +13,7 @@ class MessagesViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var messageField: UITextField!
     
-    var myMessages = [String]()
+    public var myMessages = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +23,7 @@ class MessagesViewController: UIViewController, UITextFieldDelegate {
     }
     @IBOutlet weak var bottomCons: NSLayoutConstraint!
     
+    @IBOutlet weak var tableMessages: UITableView!
     
     func keyboardWillShow(sender: NSNotification) {
         let info:NSDictionary = sender.userInfo!
@@ -39,6 +40,62 @@ class MessagesViewController: UIViewController, UITextFieldDelegate {
         self.view.endEditing(true)
         return false
     }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 7
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) ->   UITableViewCell {
+        let cell = UITableViewCell()
+        let label = UILabel(frame: CGRect(x:0, y:0, width:200, height:50))
+        label.text = "Hello Man"
+        cell.addSubview(label)
+        return cell
+    }
+    
+    
+    // UITableViewDelegate Functions
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 50
+    }
+    /*
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int
+    {
+        return 1
+    }
+    
+    
+    func tableView(tableView:UITableView, numberOfRowsInSection section:Int) -> Int
+    {
+        return myMessages.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    {
+        let rgbValue = 0x4863a0
+        let r = CGFloat((rgbValue & 0xFF0000) >> 16)/255.0
+        let g = CGFloat((rgbValue & 0xFF00) >> 8)/255.0
+        let b = CGFloat((rgbValue & 0xFF))/255.0
+        let cell:UITableViewCell=UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "mycell")
+        let newMember = myMessages[indexPath.row]
+        cell.backgroundColor = UIColor(red:r, green: g, blue: b, alpha: 1.0)
+        cell.textLabel?.text="Name: \(newMember)"
+        cell.textLabel?.textColor=UIColor.whiteColor()
+        return cell
+    }
+    
+    
+}
+
+extension MessagesViewController : MessageTableCell {
+    
+    func connectedDevicesChanged(manager: BluetoothManager, connectedDevices: [String]) {
+        NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+            self.myMessages = connectedDevices
+            self.memberTable.reloadData()
+        }
+    }*/
     /*func keyboardWillShow(notification: NSNotification) {
         let info:NSDictionary = notification.userInfo!
         let keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as! NSValue).CGRectValue()
