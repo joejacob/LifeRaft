@@ -8,12 +8,20 @@
 
 import UIKit
 import Firebase
+import FBSDKLoginKit
+import FBSDKCoreKit
+import FBSDKShareKit
 
 private let reuseIdentifier = "Cell"
 private let cellReuseIdentifier = "RaftmateCell"
 private let titleReuseIdentifier = "RaftTitle"
 private let sectionInsets = UIEdgeInsets(top: 20.0, left: 5.0, bottom: 20.0, right: 5.0)
 private let arRef = myRootRef.childByAppendingPath("chat/group1")
+var myAuth : FAuthData = FAuthData()
+var myUid : String = ""
+var myFullName : String = ""
+var myProfImgLink : String = ""
+var loggedin = false
 
 class HomeViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
@@ -27,6 +35,105 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         
         // Register cell classes
         self.myCollectionView.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        
+//        let ref = Firebase(url: "https://dazzling-inferno-3224.firebaseio.com/")
+//        let facebookLogin = FBSDKLoginManager()
+//        
+//        print("WOOOOOOO")
+//        
+//        facebookLogin.logInWithReadPermissions(["email"], fromViewController: self, handler: {
+//            (facebookResult, facebookError) -> Void in
+//            
+//            print("TESTTTTTTT")
+//            if facebookError != nil {
+//                print("Facebook login failed. Error \(facebookError)")
+//            } else if facebookResult.isCancelled {
+//                print("Facebook login was cancelled.")
+//            } else {
+//                let accessToken = FBSDKAccessToken.currentAccessToken().tokenString
+//                
+//                ref.authWithOAuthProvider("facebook", token: accessToken,
+//                    withCompletionBlock: { error, authData in
+//                        
+//                        if error != nil {
+//                            print("Login failed. \(error)")
+//                        } else {
+//                            print("Logged in! \(authData)")
+//                            myAuth = authData
+//                        }
+//                })
+//            }
+//        })
+//        facebookLogin.logInWithReadPermissions(["email"], handler: {
+//            (facebookResult, facebookError) -> Void in
+//            
+//            print("TESTTTTTTT")
+//            if facebookError != nil {
+//                print("Facebook login failed. Error \(facebookError)")
+//            } else if facebookResult.isCancelled {
+//                print("Facebook login was cancelled.")
+//            } else {
+//                let accessToken = FBSDKAccessToken.currentAccessToken().tokenString
+//                
+//                ref.authWithOAuthProvider("facebook", token: accessToken,
+//                    withCompletionBlock: { error, authData in
+//                        
+//                        if error != nil {
+//                            print("Login failed. \(error)")
+//                        } else {
+//                            print("Logged in! \(authData)")
+//                            myAuth = authData
+//                        }
+//                })
+//            }
+//        })
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        
+        if !loggedin {
+        let ref = Firebase(url: "https://dazzling-inferno-3224.firebaseio.com/")
+        let facebookLogin = FBSDKLoginManager()
+        
+        print("WOOOOOOO")
+        
+        facebookLogin.logInWithReadPermissions(["email"], fromViewController: self, handler: {
+            (facebookResult, facebookError) -> Void in
+            
+            print("TESTTTTTTT")
+            if facebookError != nil {
+                print("Facebook login failed. Error \(facebookError)")
+            } else if facebookResult.isCancelled {
+                print("Facebook login was cancelled.")
+            } else {
+                let accessToken = FBSDKAccessToken.currentAccessToken().tokenString
+                
+                ref.authWithOAuthProvider("facebook", token: accessToken,
+                    withCompletionBlock: { error, authData in
+                        
+                        if error != nil {
+                            print("Login failed. \(error)")
+                        } else {
+                            print("Logged in! \(authData)")
+                            myAuth = authData
+                            myUid = authData.uid
+                            myFullName = (authData.providerData["displayName"] as? NSString as? String)!
+                            myProfImgLink = (authData.providerData["profileImageURL"] as? NSString as? String)!
+                            loggedin = true
+                            
+                            
+                            var userRef = ref.childByAppendingPath("users/\(myUid)")
+                            let newUser = [
+                                "fullName": myFullName,
+                                "profImgLink": myProfImgLink
+                            ]
+                            userRef.setValue(newUser)
+                            
+                        }
+                })
+            }
+        })
+        }
     }
 
     override func didReceiveMemoryWarning() {
