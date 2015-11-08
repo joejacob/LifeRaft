@@ -21,8 +21,12 @@ class BlueToothViewController: UIViewController, UITableViewDataSource, UITableV
     
     let blueTooth = BluetoothManager()
     
+    
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        connections = [String]()
         
         var bluetoothRef = myRootRef.childByAppendingPath("/bluetooth/")
         
@@ -40,15 +44,18 @@ class BlueToothViewController: UIViewController, UITableViewDataSource, UITableV
         let b = CGFloat((rgbValue & 0xFF))/255.0
         memberTable.backgroundColor = UIColor(red:r, green: g, blue: b, alpha: 1.0)
         
-        self.connectedDevicesChanged(self.blueTooth, connectedDevices: self.connections)
+        //print(connections.count)
         self.blueTooth.delegate = self
+        //print(connections.count)
         self.memberTable.delegate = self
         self.memberTable.dataSource = self
     }
     @IBAction func cancelClicked(sender: UIButton) {
-        
         connections.removeAll()
         self.dismissViewControllerAnimated(true, completion: {});
+        
+        blueTooth.serviceAdvertiser.stopAdvertisingPeer()
+        blueTooth.serviceBrowser.stopBrowsingForPeers()
         
     }
     @IBAction func doneClicked(sender: UIButton) {
@@ -56,6 +63,9 @@ class BlueToothViewController: UIViewController, UITableViewDataSource, UITableV
             //store connections in database
             connections.removeAll()
             self.dismissViewControllerAnimated(true, completion: {});
+            
+            blueTooth.serviceAdvertiser.stopAdvertisingPeer()
+            blueTooth.serviceBrowser.stopBrowsingForPeers()
         }
     }
     

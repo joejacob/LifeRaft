@@ -240,6 +240,7 @@
 				19DE8D431BEEF76D00156230 /* HomeViewController.swift */,
 				D341BEC41BEEEDAA0059D991 /* MapViewController.swift */,
 				702EBA2A1BEED72E005480DD /* BlueToothViewController.swift */,
+				702EBA2E1BEEF8EF005480DD /* BluetoothServiceManager.swift */,
 				19289CC41BEE9A55002F906B /* MemberCollectionViewCell.swift */,
 				19289CC61BEE9AD4002F906B /* HomeTitleCollectionReusableView.swift */,
 				1903C86C1BEC752D005CD107 /* Assets.xcassets */,
@@ -248,7 +249,6 @@
 				19289CDC1BEEC9E4002F906B /* MessageTableViewCell.swift */,
 				19289CDE1BEECD68002F906B /* MessagesViewController.swift */,
 				702EBA281BEEBDB9005480DD /* SendNotification.swift */,
-				702EBA2E1BEEF8EF005480DD /* BluetoothServiceManager.swift */,
 			);
 			path = LifeRaft;
 			sourceTree = "<group>";
@@ -678,9 +678,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = LifeRaft/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.LifeRaft;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Schroeder.LifeRaft;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -694,9 +695,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = LifeRaft/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.LifeRaft;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Schroeder.LifeRaft;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

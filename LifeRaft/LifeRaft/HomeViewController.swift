@@ -162,7 +162,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 5
+        return 7
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -170,7 +170,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         
 //        cell.backgroundColor = UIColor.blackColor()
         cell.myNameLabel.text = "Ethan"
-        cell.myStatusLabel.text = "OK"
+        //cell.myStatusLabel.text = "OK"
+
         
         // Configure the cell
         

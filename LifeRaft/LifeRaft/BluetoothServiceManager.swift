@@ -20,8 +20,8 @@ class BluetoothManager : NSObject {
     
     private let BluetoothType = "example-color"
     private let myPeerId = MCPeerID(displayName: UIDevice.currentDevice().name)
-    private let serviceAdvertiser : MCNearbyServiceAdvertiser
-    private let serviceBrowser : MCNearbyServiceBrowser
+    public let serviceAdvertiser : MCNearbyServiceAdvertiser
+    public let serviceBrowser : MCNearbyServiceBrowser
     var delegate : BluetoothManagerDelegate?
     
     override init() {
