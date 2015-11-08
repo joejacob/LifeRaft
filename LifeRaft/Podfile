@@ -7,6 +7,9 @@ target 'LifeRaft' do
 
 pod 'GoogleMaps'
 pod 'Firebase', '>= 2.4.2'
+pod 'FBSDKCoreKit'
+pod 'FBSDKLoginKit'
+pod 'FBSDKShareKit'
 
 end
 
