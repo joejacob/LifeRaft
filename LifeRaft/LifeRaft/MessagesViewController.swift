@@ -8,15 +8,18 @@
 
 import UIKit
 
-class MessagesViewController: UIViewController {
+class MessagesViewController: UIViewController, UITextFieldDelegate {
 
     
+    @IBOutlet var messageField: UITextField!
+    
+    var myMessages = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil);
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
-        
+        self.messageField.delegate = self
     }
     @IBOutlet weak var bottomCons: NSLayoutConstraint!
     
@@ -28,7 +31,15 @@ class MessagesViewController: UIViewController {
     }
     func keyboardWillHide(sender: NSNotification) {
         bottomCons!.constant = 8
-    }    /*func keyboardWillShow(notification: NSNotification) {
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        myMessages.append(textField.text!)
+        textField.text = ""
+        self.view.endEditing(true)
+        return false
+    }
+    /*func keyboardWillShow(notification: NSNotification) {
         let info:NSDictionary = notification.userInfo!
         let keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as! NSValue).CGRectValue()
         
