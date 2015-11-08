@@ -9,13 +9,14 @@
 /* Begin PBXBuildFile section */
 		1903C8641BEC752D005CD107 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1903C8631BEC752D005CD107 /* AppDelegate.swift */; };
 		1903C8661BEC752D005CD107 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1903C8651BEC752D005CD107 /* FirstViewController.swift */; };
-		1903C8681BEC752D005CD107 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1903C8671BEC752D005CD107 /* SecondViewController.swift */; };
 		1903C86B1BEC752D005CD107 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1903C8691BEC752D005CD107 /* Main.storyboard */; };
 		1903C86D1BEC752D005CD107 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1903C86C1BEC752D005CD107 /* Assets.xcassets */; };
 		1903C8701BEC752D005CD107 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1903C86E1BEC752D005CD107 /* LaunchScreen.storyboard */; };
 		19289CB71BEE8E49002F906B /* HomeCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19289CB61BEE8E49002F906B /* HomeCollectionViewController.swift */; };
 		19289CC51BEE9A55002F906B /* MemberCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19289CC41BEE9A55002F906B /* MemberCollectionViewCell.swift */; };
 		19289CC71BEE9AD4002F906B /* HomeTitleCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19289CC61BEE9AD4002F906B /* HomeTitleCollectionReusableView.swift */; };
+		19289CDD1BEEC9E4002F906B /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19289CDC1BEEC9E4002F906B /* MessageTableViewCell.swift */; };
+		19289CDF1BEECD68002F906B /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19289CDE1BEECD68002F906B /* MessagesViewController.swift */; };
 		19A41DCF1BEE68FC00C96159 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19A41DC21BEE68E400C96159 /* Alamofire.framework */; };
 		19A41DD01BEE68FC00C96159 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 19A41DC21BEE68E400C96159 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		19A41DD41BEE690B00C96159 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19A41DAA1BEE68D500C96159 /* SwiftyJSON.framework */; };
@@ -160,7 +161,6 @@
 		1903C8601BEC752D005CD107 /* LifeRaft.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LifeRaft.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1903C8631BEC752D005CD107 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1903C8651BEC752D005CD107 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		1903C8671BEC752D005CD107 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		1903C86A1BEC752D005CD107 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1903C86C1BEC752D005CD107 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1903C86F1BEC752D005CD107 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -168,6 +168,8 @@
 		19289CB61BEE8E49002F906B /* HomeCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewController.swift; sourceTree = "<group>"; };
 		19289CC41BEE9A55002F906B /* MemberCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberCollectionViewCell.swift; sourceTree = "<group>"; };
 		19289CC61BEE9AD4002F906B /* HomeTitleCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTitleCollectionReusableView.swift; sourceTree = "<group>"; };
+		19289CDC1BEEC9E4002F906B /* MessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
+		19289CDE1BEECD68002F906B /* MessagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
 		19A41D9F1BEE68D400C96159 /* SwiftyJSON.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftyJSON.xcodeproj; path = ../SwiftyJSON/SwiftyJSON.xcodeproj; sourceTree = "<group>"; };
 		19A41DB71BEE68E400C96159 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = ../Alamofire/Alamofire.xcodeproj; sourceTree = "<group>"; };
 		4C0F2FE11BEE7B730061A122 /* UberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UberViewController.swift; sourceTree = "<group>"; };
@@ -217,7 +219,6 @@
 				4C0F2FE11BEE7B730061A122 /* UberViewController.swift */,
 				1903C8631BEC752D005CD107 /* AppDelegate.swift */,
 				1903C8651BEC752D005CD107 /* FirstViewController.swift */,
-				1903C8671BEC752D005CD107 /* SecondViewController.swift */,
 				1903C8691BEC752D005CD107 /* Main.storyboard */,
 				19289CB61BEE8E49002F906B /* HomeCollectionViewController.swift */,
 				19289CC41BEE9A55002F906B /* MemberCollectionViewCell.swift */,
@@ -225,6 +226,8 @@
 				1903C86C1BEC752D005CD107 /* Assets.xcassets */,
 				1903C86E1BEC752D005CD107 /* LaunchScreen.storyboard */,
 				1903C8711BEC752D005CD107 /* Info.plist */,
+				19289CDC1BEEC9E4002F906B /* MessageTableViewCell.swift */,
+				19289CDE1BEECD68002F906B /* MessagesViewController.swift */,
 			);
 			path = LifeRaft;
 			sourceTree = "<group>";
@@ -510,9 +513,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				19289CDF1BEECD68002F906B /* MessagesViewController.swift in Sources */,
 				4C0F2FE21BEE7B730061A122 /* UberViewController.swift in Sources */,
-				1903C8681BEC752D005CD107 /* SecondViewController.swift in Sources */,
 				19289CC71BEE9AD4002F906B /* HomeTitleCollectionReusableView.swift in Sources */,
+				19289CDD1BEEC9E4002F906B /* MessageTableViewCell.swift in Sources */,
 				19289CC51BEE9A55002F906B /* MemberCollectionViewCell.swift in Sources */,
 				19289CB71BEE8E49002F906B /* HomeCollectionViewController.swift in Sources */,
 				1903C8641BEC752D005CD107 /* AppDelegate.swift in Sources */,
