@@ -9,7 +9,7 @@
 
 import UIKit
 
-class ColorSwitchViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class BlueToothViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var connectionsLabel: UILabel!
     
@@ -26,20 +26,6 @@ class ColorSwitchViewController: UIViewController, UITableViewDataSource, UITabl
         memberTable.dataSource = self
     }
     
-    /*
-    @IBAction func redTapped(sender: AnyObject) {
-        self.changeColor(UIColor.redColor())
-    }
-    
-    @IBAction func yellowTapped(sender: AnyObject) {
-        self.changeColor(UIColor.yellowColor())
-    }
-    
-    func changeColor(color : UIColor) {
-        UIView.animateWithDuration(0.2) {
-            self.view.backgroundColor = color
-        }
-    }*/
     func numberOfSectionsInTableView(tableView: UITableView) -> Int
     {
         return 1
@@ -79,7 +65,9 @@ class ColorSwitchViewController: UIViewController, UITableViewDataSource, UITabl
  
 }
 
-extension ColorSwitchViewController : BluetoothManagerDelegate {
+
+
+extension BlueToothViewController : BluetoothManagerDelegate {
     
     func connectedDevicesChanged(manager: BluetoothManager, connectedDevices: [String]) {
         NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
