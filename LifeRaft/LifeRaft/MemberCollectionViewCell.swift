@@ -13,4 +13,8 @@ class MemberCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var myNameLabel: UILabel!
     @IBOutlet weak var myStatusLabel: UILabel!
     @IBOutlet weak var myImageView: UIImageView!
+    
+    func batteryLevel() -> Float{
+        return UIDevice.currentDevice().batteryLevel
+    }
 }

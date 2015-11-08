@@ -8,6 +8,7 @@
 
 
 import UIKit
+import Firebase
 
 class BlueToothViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -18,36 +19,43 @@ class BlueToothViewController: UIViewController, UITableViewDataSource, UITableV
     var connections = [String]()
     
     let blueTooth = BluetoothManager()
-    /*
-    @IBAction func cancelClick(sender: UIButton) {
-        connections.removeAll()
-        navigationController!.popViewControllerAnimated(true)
-    }
-    @IBAction func doneClick(sender: UIButton) {
-        if connections.count > 0 {
-            //store connections in database
-            navigationController!.popViewControllerAnimated(true)
-        }
-    }
-*/
-    @IBAction func cancelClicked(sender: UIButton) {
-        connections.removeAll()
-        //navigationController!.popViewControllerAnimated(true)
-    }
-    
-    @IBAction func doneClicked(sender: UIButton) {
-        if connections.count > 0 {
-            //store connections in database
-            //navigationController!.popViewControllerAnimated(true)
-        }
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        var memberRef = myRootRef.childByAppendingPath("group1/members/")
+        
+       /* memberRef.observeEventType(FEventType.Value, withBlock: {
+            snapshot in let json = JSON(snapshot.value)
+            for (r , k) in json {
+                var testGroup = [String:String]()
+                for (key, val) in k {
+                    testGroup[String(key)] = String(val)
+                }
+                self.groupMems[String(r)] = testGroup
+            }
+            self.updatePeople(self.groupMems)
+            print("\(self.groupMems.count)")
+        })*/
+        
+        connectedDevicesChanged(blueTooth, connectedDevices: connections)
         blueTooth.delegate = self
         memberTable.delegate = self
         memberTable.dataSource = self
     }
+    @IBAction func cancelClicked(sender: UIButton) {
+        connections.removeAll()
+        self.dismissViewControllerAnimated(true, completion: {});
+        
+    }
+    @IBAction func doneClicked(sender: UIButton) {
+        if connections.count > 0 {
+            //store connections in database
+            connections.removeAll()
+            self.dismissViewControllerAnimated(true, completion: {});
+        }
+    }
+    
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int
     {

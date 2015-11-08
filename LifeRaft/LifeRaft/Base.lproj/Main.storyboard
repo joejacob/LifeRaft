@@ -83,43 +83,6 @@
             </objects>
             <point key="canvasLocation" x="750" y="360"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="XQE-pL-QB8">
-            <objects>
-                <viewController id="F8I-3v-yu4" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="vUa-O9-LVK"/>
-                        <viewControllerLayoutGuide type="bottom" id="p3G-ln-Dcc"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="mK2-30-byR">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hoh-Ie-mmR">
-                                <rect key="frame" x="366" y="499" width="109" height="42"/>
-                                <animations/>
-                                <state key="normal" title="Join Group"/>
-                                <connections>
-                                    <segue destination="Qfc-td-LWy" kind="show" id="aRF-Fl-PRP"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sbv-RO-Qhm">
-                                <rect key="frame" x="130" y="499" width="109" height="42"/>
-                                <animations/>
-                                <state key="normal" title="Create Group"/>
-                                <connections>
-                                    <segue destination="Qfc-td-LWy" kind="show" id="U21-TO-91h"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="wJU-kj-o5c" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1524" y="1244"/>
-        </scene>
         <!--Blue Tooth View Controller-->
         <scene sceneID="G46-Eq-7Yd">
             <objects>
@@ -136,6 +99,9 @@
                                 <rect key="frame" x="304" y="562" width="268" height="30"/>
                                 <animations/>
                                 <state key="normal" title="DONE"/>
+                                <connections>
+                                    <action selector="doneClicked:" destination="Qfc-td-LWy" eventType="touchUpInside" id="Okd-hw-gnQ"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Searching for group..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rQa-2A-s9p">
                                 <rect key="frame" x="0.0" y="20" width="600" height="32"/>
@@ -169,6 +135,9 @@
                                 <rect key="frame" x="28" y="562" width="268" height="30"/>
                                 <animations/>
                                 <state key="normal" title="CANCEL"/>
+                                <connections>
+                                    <action selector="cancelClicked:" destination="Qfc-td-LWy" eventType="touchUpInside" id="eXw-20-Xhd"/>
+                                </connections>
                             </button>
                         </subviews>
                         <animations/>
@@ -200,7 +169,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v27-GM-85n" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3132" y="81"/>
+            <point key="canvasLocation" x="1477" y="-640"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -499,6 +468,9 @@
                                 <state key="normal" title="Create / Join a Raft!">
                                     <color key="titleColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <segue destination="Qfc-td-LWy" kind="presentation" id="lx1-gF-uSE"/>
+                                </connections>
                             </button>
                         </subviews>
                         <animations/>
@@ -529,8 +501,11 @@
         <image name="second" width="30" height="30"/>
         <image name="uber" width="26" height="25"/>
     </resources>
+<<<<<<< HEAD
     <inferredMetricsTieBreakers>
         <segue reference="vI1-Ck-ydJ"/>
         <segue reference="aRF-Fl-PRP"/>
     </inferredMetricsTieBreakers>
+=======
+>>>>>>> fea9bfe1d9599e32ea65ab317d86e0ffc0f656b3
 </document>
