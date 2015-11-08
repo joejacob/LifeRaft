@@ -120,10 +120,10 @@
             </objects>
             <point key="canvasLocation" x="1524" y="1244"/>
         </scene>
-        <!--Color Switch View Controller-->
+        <!--Blue Tooth View Controller-->
         <scene sceneID="G46-Eq-7Yd">
             <objects>
-                <viewController id="Qfc-td-LWy" customClass="ColorSwitchViewController" customModule="LifeRaft" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Qfc-td-LWy" customClass="BlueToothViewController" customModule="LifeRaft" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Whh-yr-DmC"/>
                         <viewControllerLayoutGuide type="bottom" id="PJY-XT-tpA"/>
