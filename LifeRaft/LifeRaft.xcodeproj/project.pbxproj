@@ -24,7 +24,9 @@
 		4C0F2FE21BEE7B730061A122 /* UberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0F2FE11BEE7B730061A122 /* UberViewController.swift */; };
 		702EBA091BEE9252005480DD /* SendMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702EBA081BEE9252005480DD /* SendMessage.swift */; };
 		702EBA291BEEBDB9005480DD /* SendNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702EBA281BEEBDB9005480DD /* SendNotification.swift */; };
+		702EBA2B1BEED72E005480DD /* BlueToothViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702EBA2A1BEED72E005480DD /* BlueToothViewController.swift */; };
 		C843F025439F2FCF1FD2E477 /* Pods_LifeRaft.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEA1DEFA4AF371232FE74E5B /* Pods_LifeRaft.framework */; };
+		D341BEC51BEEEDAA0059D991 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D341BEC41BEEEDAA0059D991 /* MapViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -176,8 +178,10 @@
 		4C0F2FE11BEE7B730061A122 /* UberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UberViewController.swift; sourceTree = "<group>"; };
 		702EBA081BEE9252005480DD /* SendMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendMessage.swift; sourceTree = "<group>"; };
 		702EBA281BEEBDB9005480DD /* SendNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendNotification.swift; sourceTree = "<group>"; };
+		702EBA2A1BEED72E005480DD /* BlueToothViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlueToothViewController.swift; sourceTree = "<group>"; };
 		B92622328D1A9928113CA608 /* Pods-LifeRaft.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LifeRaft.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LifeRaft/Pods-LifeRaft.debug.xcconfig"; sourceTree = "<group>"; };
 		CEA1DEFA4AF371232FE74E5B /* Pods_LifeRaft.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LifeRaft.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D341BEC41BEEEDAA0059D991 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -222,6 +226,8 @@
 				1903C8631BEC752D005CD107 /* AppDelegate.swift */,
 				1903C8651BEC752D005CD107 /* FirstViewController.swift */,
 				1903C8691BEC752D005CD107 /* Main.storyboard */,
+				D341BEC41BEEEDAA0059D991 /* MapViewController.swift */,
+				702EBA2A1BEED72E005480DD /* BlueToothViewController.swift */,
 				19289CB61BEE8E49002F906B /* HomeCollectionViewController.swift */,
 				19289CC41BEE9A55002F906B /* MemberCollectionViewCell.swift */,
 				19289CC61BEE9AD4002F906B /* HomeTitleCollectionReusableView.swift */,
@@ -523,9 +529,11 @@
 				19289CC51BEE9A55002F906B /* MemberCollectionViewCell.swift in Sources */,
 				19289CB71BEE8E49002F906B /* HomeCollectionViewController.swift in Sources */,
 				1903C8641BEC752D005CD107 /* AppDelegate.swift in Sources */,
+				D341BEC51BEEEDAA0059D991 /* MapViewController.swift in Sources */,
 				1903C8661BEC752D005CD107 /* FirstViewController.swift in Sources */,
 				702EBA291BEEBDB9005480DD /* SendNotification.swift in Sources */,
 				702EBA091BEE9252005480DD /* SendMessage.swift in Sources */,
+				702EBA2B1BEED72E005480DD /* BlueToothViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
