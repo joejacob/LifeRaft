@@ -25,6 +25,7 @@
 		702EBA091BEE9252005480DD /* SendMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702EBA081BEE9252005480DD /* SendMessage.swift */; };
 		702EBA291BEEBDB9005480DD /* SendNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702EBA281BEEBDB9005480DD /* SendNotification.swift */; };
 		702EBA2B1BEED72E005480DD /* BlueToothViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702EBA2A1BEED72E005480DD /* BlueToothViewController.swift */; };
+		702EBA2F1BEEF8F0005480DD /* BluetoothServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702EBA2E1BEEF8EF005480DD /* BluetoothServiceManager.swift */; };
 		C843F025439F2FCF1FD2E477 /* Pods_LifeRaft.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEA1DEFA4AF371232FE74E5B /* Pods_LifeRaft.framework */; };
 /* End PBXBuildFile section */
 
@@ -178,6 +179,7 @@
 		702EBA081BEE9252005480DD /* SendMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendMessage.swift; sourceTree = "<group>"; };
 		702EBA281BEEBDB9005480DD /* SendNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendNotification.swift; sourceTree = "<group>"; };
 		702EBA2A1BEED72E005480DD /* BlueToothViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlueToothViewController.swift; sourceTree = "<group>"; };
+		702EBA2E1BEEF8EF005480DD /* BluetoothServiceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothServiceManager.swift; sourceTree = "<group>"; };
 		B92622328D1A9928113CA608 /* Pods-LifeRaft.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LifeRaft.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LifeRaft/Pods-LifeRaft.debug.xcconfig"; sourceTree = "<group>"; };
 		CEA1DEFA4AF371232FE74E5B /* Pods_LifeRaft.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LifeRaft.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -234,6 +236,7 @@
 				19289CDC1BEEC9E4002F906B /* MessageTableViewCell.swift */,
 				19289CDE1BEECD68002F906B /* MessagesViewController.swift */,
 				702EBA281BEEBDB9005480DD /* SendNotification.swift */,
+				702EBA2E1BEEF8EF005480DD /* BluetoothServiceManager.swift */,
 			);
 			path = LifeRaft;
 			sourceTree = "<group>";
@@ -529,6 +532,7 @@
 				1903C8661BEC752D005CD107 /* FirstViewController.swift in Sources */,
 				702EBA291BEEBDB9005480DD /* SendNotification.swift in Sources */,
 				702EBA091BEE9252005480DD /* SendMessage.swift in Sources */,
+				702EBA2F1BEEF8F0005480DD /* BluetoothServiceManager.swift in Sources */,
 				702EBA2B1BEED72E005480DD /* BlueToothViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

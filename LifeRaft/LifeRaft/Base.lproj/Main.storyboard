@@ -69,7 +69,6 @@
         <!--Second-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
                 <viewController id="8rJ-Kc-sve" customClass="MessagesViewController" customModule="LifeRaft" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="L7p-HK-0SC"/>
@@ -98,7 +97,7 @@
                                         <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BNP-Qf-ZfI" id="5WT-eJ-vBt">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Message text.........................................................." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v3B-DD-y3g">
@@ -132,6 +131,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Second" image="second" id="cPa-gy-q4n"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="750" y="360"/>
         </scene>
@@ -167,12 +167,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wJU-kj-o5c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1498" y="271"/>
+            <point key="canvasLocation" x="1524" y="1244"/>
         </scene>
-        <!--View Controller-->
+        <!--Color Switch View Controller-->
         <scene sceneID="G46-Eq-7Yd">
             <objects>
-                <viewController id="Qfc-td-LWy" sceneMemberID="viewController">
+                <viewController id="Qfc-td-LWy" customClass="ColorSwitchViewController" customModule="LifeRaft" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Whh-yr-DmC"/>
                         <viewControllerLayoutGuide type="bottom" id="PJY-XT-tpA"/>
@@ -226,6 +226,9 @@
                             <constraint firstAttribute="trailingMargin" secondItem="MLJ-0b-py5" secondAttribute="trailing" constant="8" id="wq1-xL-bDG"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="memberTable" destination="0rR-Oa-L4A" id="tUN-8j-czi"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v27-GM-85n" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -325,12 +328,19 @@
                                         <rect key="frame" x="0.0" y="28" width="560" height="110"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WGx-Nz-ZGG" id="7Fr-0g-hl8">
-                                            <rect key="frame" x="0.0" y="0.0" width="560" height="109.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="560" height="109"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EN4-7Z-mBR">
+                                <rect key="frame" x="70" y="35" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <segue destination="F8I-3v-yu4" kind="show" id="vff-C5-uha"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>

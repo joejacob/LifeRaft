@@ -8,21 +8,100 @@
 
 
 import UIKit
-import CoreBluetooth
 
-class BlueToothViewController: UIViewController {
+class ColorSwitchViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    @IBOutlet weak var connectionsLabel: UILabel!
+    
+    @IBOutlet weak var memberTable: UITableView!
+    
+    var connections = [String]()
+    
+    let colorService = BluetoothManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        colorService.delegate = self
+        memberTable.delegate = self
+        memberTable.dataSource = self
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    /*
+    @IBAction func redTapped(sender: AnyObject) {
+        self.changeColor(UIColor.redColor())
+    }
+    
+    @IBAction func yellowTapped(sender: AnyObject) {
+        self.changeColor(UIColor.yellowColor())
+    }
+    
+    func changeColor(color : UIColor) {
+        UIView.animateWithDuration(0.2) {
+            self.view.backgroundColor = color
+        }
+    }*/
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int
+    {
+        return 1
     }
     
     
+    func tableView(tableView:UITableView!, numberOfRowsInSection section:Int) -> Int
+    {
+        return connections.count
+    }
+    
+    func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell!
+    {
+        
+            let cell:UITableViewCell=UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "mycell")
+            let newMember = connections[indexPath.row]
+            //let join : UISwitch = UISwitch()
+            //join.frame = CGRectMake(20, 20, 40, 20)
+            
+        
+            
+        
+        
+                cell.textLabel?.text="Name: \(newMember)"
+                
+        
+                //cell.textLabel?.text = "Status: \(uber["status"]!!)"
+                //cell.detailTextLabel?.text="Riders"
+        
+        
+        
+           // print("adding button")
+                return cell
+                //return cell
+    }
+
+ 
 }
 
-
+extension ColorSwitchViewController : BluetoothManagerDelegate {
+    
+    func connectedDevicesChanged(manager: BluetoothManager, connectedDevices: [String]) {
+        NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+            self.connectionsLabel.text = "Connections: \(connectedDevices)"
+            self.connections = connectedDevices
+            self.memberTable.reloadData()
+            
+        }
+    }
+    
+    /*
+    func colorChanged(manager: BluetoothManager, colorString: String) {
+        NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+            switch colorString {
+            case "red":
+                self.changeColor(UIColor.redColor())
+            case "yellow":
+                self.changeColor(UIColor.yellowColor())
+            default:
+                NSLog("%@", "Unknown color value received: \(colorString)")
+            }
+        }
+    }*/
+    
+}
