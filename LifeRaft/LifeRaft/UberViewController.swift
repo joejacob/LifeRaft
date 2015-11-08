@@ -27,6 +27,8 @@ class UberViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        uberTable.allowsSelection = false
+        uberTable.separatorStyle = UITableViewCellSeparatorStyle.None
         // Ask for Authorisation from the User.
 //        self.locationManager.requestAlwaysAuthorization()
 //        
@@ -38,6 +40,8 @@ class UberViewController: UIViewController, UITableViewDataSource, UITableViewDe
 //            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
 //            locationManager.startUpdatingLocation()
 //        }
+        
+      
         getClosestUber()
         uberTable.dataSource = self
         uberTable.delegate = self
@@ -103,13 +107,19 @@ class UberViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     func buttonClicked(sender: UIButton!){
         print("joined uber")
-        
+        let rgbValue = 0x4863a0
+        let r = CGFloat((rgbValue & 0xFF0000) >> 16)/255.0
+        let g = CGFloat((rgbValue & 0xFF00) >> 8)/255.0
+        let b = CGFloat((rgbValue & 0xFF))/255.0
         var status : String? = "join"
         if !sender.selected {
             sender.selected = true
             
             sender.setTitle("leave", forState: UIControlState.Selected)
-            sender.backgroundColor = UIColor.redColor()
+            sender.setTitleColor(UIColor.redColor(), forState: UIControlState.Selected)
+            sender.backgroundColor = UIColor(red:r, green: g, blue: b, alpha: 1.0)
+            //sender.
+            //sender.backgroundColor = UIColo
             //nder.setOn(true, animated: true)
             //sender.setOn(true, animated: true)
             currentUbers[sender.tag]["riders"]!! += " name"
@@ -121,7 +131,8 @@ class UberViewController: UIViewController, UITableViewDataSource, UITableViewDe
         else{
             //sender.setOn(false, animated:true)
             sender.selected = false
-            sender.backgroundColor = UIColor.greenColor()
+            sender.backgroundColor = UIColor(red:r, green: g, blue: b, alpha: 1.0)
+             sender.setTitleColor(UIColor.greenColor(), forState: UIControlState.Normal)
             sender.setTitle("join", forState: UIControlState.Normal)
         currentUbers[sender.tag]["riders"]!! = currentUbers[sender.tag]["riders"]!!.stringByReplacingOccurrencesOfString(" name", withString: "")
         var i:Int? = Int(currentUbers[sender.tag]["open spots"]!!)
@@ -145,16 +156,17 @@ class UberViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell!
     {
+        let rgbValue = 0x4863a0
+        let r = CGFloat((rgbValue & 0xFF0000) >> 16)/255.0
+        let g = CGFloat((rgbValue & 0xFF00) >> 8)/255.0
+        let b = CGFloat((rgbValue & 0xFF))/255.0
         if(indexPath.row>buttonArray.count-1){
             print("\(indexPath.row) is greater than \(buttonArray.count-1)")
         let cell:UITableViewCell=UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "mycell")
         let uber = currentUbers[indexPath.row]
         //let join : UISwitch = UISwitch()
         //join.frame = CGRectMake(20, 20, 40, 20)
-            let rgbValue = 0x4863a0
-            let r = CGFloat((rgbValue & 0xFF0000) >> 16)/255.0
-            let g = CGFloat((rgbValue & 0xFF00) >> 8)/255.0
-            let b = CGFloat((rgbValue & 0xFF))/255.0
+            
             cell.backgroundColor = UIColor(red:r, green: g, blue: b, alpha: 1.0)
         let button : UIButton = UIButton(type: UIButtonType.Custom) as UIButton
         button.frame = CGRectMake(20, 20, 80, 20)
@@ -165,22 +177,26 @@ class UberViewController: UIViewController, UITableViewDataSource, UITableViewDe
        button.center = CGPoint(x: view.bounds.width - 100, y:cellHeight/2.0)
         button.addTarget(self, action: "buttonClicked:", forControlEvents:  UIControlEvents.TouchUpInside)
         button.tag = indexPath.row
-            button.backgroundColor = UIColor.greenColor()
+            button.backgroundColor = UIColor(red:r, green: g, blue: b, alpha: 1.0)
             //button.titleLabel?.
         //join.tag = indexPath.row
         //join.setOn(false, animated:true)
        // button.t
         button.setTitle("join", forState: UIControlState.Normal)
+            button.setTitleColor(UIColor.greenColor(), forState: UIControlState.Normal)
         if uber["status"]! == "accepted"{
         cell.textLabel?.text="ETA: \(uber["eta"]!!)  Driver name: \(uber["driver name"]!!)"
+            cell.textLabel?.textColor = UIColor.whiteColor()
+            cell.backgroundColor = UIColor(red:r, green: g, blue: b, alpha: 1.0)
         
         }
         else{
             cell.textLabel?.text = "Status: \(uber["status"]!!)"
+            cell.textLabel?.textColor = UIColor.whiteColor()
             //cell.detailTextLabel?.text="Riders"
         }
         cell.detailTextLabel?.text="Riders \(uber["riders"]!!) Open Spots: \(uber["open spots"]!!)"
-        
+        cell.detailTextLabel?.textColor = UIColor.whiteColor()
         cell.addSubview(button)
             print("adding button")
         buttonArray.append(button)
@@ -195,7 +211,7 @@ class UberViewController: UIViewController, UITableViewDataSource, UITableViewDe
             /*
             let button : UIButton = UIButton(type: UIButtonType.ContactAdd) as UIButton
             button.frame = CGRectMake(20, 20, 20, 20)
-            let cellHeight: CGFloat = 110.0
+            let cellHeight: CGFloat = 110.0v
             //join.center = CGPoint(x: view.bounds.width - 60, y:cellHeight/2.0)
             //join.addTarget(self, action: "buttonClicked:", forControlEvents:  UIControlEvents.ValueChanged)
             button.center = CGPoint(x: view.bounds.width - 45, y:cellHeight/2.0)
@@ -208,15 +224,17 @@ class UberViewController: UIViewController, UITableViewDataSource, UITableViewDe
 */          let button = buttonArray[indexPath.row]
             print("\(button.state)")
             if uber["status"]! == "accepted"{
-                cell.textLabel?.text="ETA: \(uber["eta"]!)  Driver name: \(uber["driver name"]!)"
-                
+                cell.textLabel?.text="ETA: \(uber["eta"]!!)  Driver name: \(uber["driver name"]!!)"
+                cell.textLabel?.textColor = UIColor.whiteColor()
+                cell.backgroundColor = UIColor(red:r, green: g, blue: b, alpha: 1.0)
             }
             else{
                 cell.textLabel?.text = "Status: \(uber["status"]!!)"
+                cell.textLabel?.textColor = UIColor.whiteColor()
                 //cell.detailTextLabel?.text="Riders"
             }
             cell.detailTextLabel?.text="Riders \(uber["riders"]!!) Open Spots: \(uber["open spots"]!!)"
-            
+            cell.detailTextLabel?.textColor = UIColor.whiteColor()
             cell.addSubview(button)
             //buttonArray.append(button)
             return cell

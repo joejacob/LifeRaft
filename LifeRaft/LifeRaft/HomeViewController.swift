@@ -12,7 +12,7 @@ import Firebase
 private let reuseIdentifier = "Cell"
 private let cellReuseIdentifier = "RaftmateCell"
 private let titleReuseIdentifier = "RaftTitle"
-private let sectionInsets = UIEdgeInsets(top: 50.0, left: 20.0, bottom: 50.0, right: 20.0)
+private let sectionInsets = UIEdgeInsets(top: 20.0, left: 5.0, bottom: 20.0, right: 5.0)
 private let arRef = myRootRef.childByAppendingPath("chat/group1")
 
 class HomeViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
@@ -55,14 +55,14 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 4
+        return 5
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(cellReuseIdentifier, forIndexPath: indexPath) as! MemberCollectionViewCell
         
 //        cell.backgroundColor = UIColor.blackColor()
-        cell.myNameLabel.text = "Ethan Gottlieb"
+        cell.myNameLabel.text = "Ethan"
         cell.myStatusLabel.text = "OK"
         
         // Configure the cell
@@ -102,7 +102,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     */
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return CGSize(width: 150, height: 150)
+        return CGSize(width: 150, height: 130)
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
