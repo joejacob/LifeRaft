@@ -8,6 +8,7 @@
 
 
 import UIKit
+import Firebase
 
 class BlueToothViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -19,7 +20,29 @@ class BlueToothViewController: UIViewController, UITableViewDataSource, UITableV
     
     let blueTooth = BluetoothManager()
     
-    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        var memberRef = myRootRef.childByAppendingPath("group1/members/")
+        
+       /* memberRef.observeEventType(FEventType.Value, withBlock: {
+            snapshot in let json = JSON(snapshot.value)
+            for (r , k) in json {
+                var testGroup = [String:String]()
+                for (key, val) in k {
+                    testGroup[String(key)] = String(val)
+                }
+                self.groupMems[String(r)] = testGroup
+            }
+            self.updatePeople(self.groupMems)
+            print("\(self.groupMems.count)")
+        })*/
+        
+        connectedDevicesChanged(blueTooth, connectedDevices: connections)
+        blueTooth.delegate = self
+        memberTable.delegate = self
+        memberTable.dataSource = self
+    }
     @IBAction func cancelClicked(sender: UIButton) {
         connections.removeAll()
         self.dismissViewControllerAnimated(true, completion: {});
