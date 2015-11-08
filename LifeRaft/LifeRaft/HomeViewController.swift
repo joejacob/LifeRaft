@@ -91,16 +91,23 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     override func viewDidAppear(animated: Bool) {
         
-        if !loggedin {
+        
         let ref = Firebase(url: "https://dazzling-inferno-3224.firebaseio.com/")
         let facebookLogin = FBSDKLoginManager()
         
-        print("WOOOOOOO")
+        if ref.authData != nil {
+            var authData = ref.authData
+            print("Logged in! \(authData)")
+            myAuth = authData
+            myUid = authData.uid
+            myFullName = (authData.providerData["displayName"] as? NSString as? String)!
+            myProfImgLink = (authData.providerData["profileImageURL"] as? NSString as? String)!
+            loggedin = true
+        } else {
         
         facebookLogin.logInWithReadPermissions(["email"], fromViewController: self, handler: {
             (facebookResult, facebookError) -> Void in
             
-            print("TESTTTTTTT")
             if facebookError != nil {
                 print("Facebook login failed. Error \(facebookError)")
             } else if facebookResult.isCancelled {

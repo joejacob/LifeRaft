@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Second-->
+        <!--Chat-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
                 <viewController id="8rJ-Kc-sve" customClass="MessagesViewController" customModule="LifeRaft" customModuleProvider="target" sceneMemberID="viewController">
@@ -89,7 +89,7 @@
                             <constraint firstItem="xvf-Me-bpy" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leading" id="pCd-J8-ING"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Second" image="second" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="Chat" image="myraftsmall" id="cPa-gy-q4n" propertyAccessControl="none"/>
                     <connections>
                         <outlet property="bottomCons" destination="Jgj-zk-8Ib" id="qmN-sk-OlM"/>
                         <outlet property="messageField" destination="5gW-qZ-mwR" id="2L6-yU-CK4"/>
@@ -218,9 +218,9 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="0.0" y="0.0"/>
+            <point key="canvasLocation" x="94" y="30"/>
         </scene>
-        <!--Third-->
+        <!--Map-->
         <scene sceneID="kf7-0c-gIO">
             <objects>
                 <viewController id="nCH-1c-iXb" customClass="MapViewController" customModule="LifeRaft" customModuleProvider="target" sceneMemberID="viewController">
@@ -257,13 +257,13 @@
                             <constraint firstItem="HXV-1M-8GX" firstAttribute="centerX" secondItem="baG-NY-wLe" secondAttribute="centerX" id="HOs-jn-Q3o"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Third" image="second" id="qUw-aQ-E0B" userLabel="Third"/>
+                    <tabBarItem key="tabBarItem" title="Map" image="myraftsmall" id="qUw-aQ-E0B" userLabel="Third"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Et2-9j-DK0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="762" y="1084"/>
+            <point key="canvasLocation" x="1006" y="1072"/>
         </scene>
-        <!--Fourth-->
+        <!--Uber-->
         <scene sceneID="Kz3-L9-NE7">
             <objects>
                 <viewController id="KQl-ZU-wdF" customClass="UberViewController" customModule="LifeRaft" customModuleProvider="target" sceneMemberID="viewController">
@@ -346,7 +346,11 @@
                             <button opaque="NO" contentMode="scaleAspectFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JgH-Tj-lpz">
                                 <rect key="frame" x="261" y="30" width="80" height="80"/>
                                 <animations/>
-                                <state key="normal" image="uber"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="9Lk-gS-Qft"/>
+                                    <constraint firstAttribute="height" constant="80" id="oY6-Ku-69u"/>
+                                </constraints>
+                                <state key="normal" image="uberfinal"/>
                                 <connections>
                                     <action selector="getUber:" destination="KQl-ZU-wdF" eventType="touchUpInside" id="Opj-Bd-aI7"/>
                                 </connections>
@@ -360,12 +364,13 @@
                             <constraint firstItem="0a2-aT-B5u" firstAttribute="centerX" secondItem="3io-ST-BtZ" secondAttribute="centerX" id="TYR-6l-zDh"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Fourth" image="second" id="5wu-YN-6RG"/>
+                    <tabBarItem key="tabBarItem" title="Uber" image="myraftsmall" id="5wu-YN-6RG"/>
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="uberETA" destination="0a2-aT-B5u" id="4Zb-QR-dwA"/>
                         <outlet property="uberTable" destination="Xp5-yn-7Id" id="Nsp-EW-HSf"/>
+                        <segue destination="nCH-1c-iXb" kind="show" identifier="map" id="aTH-Nv-1hB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YAc-Dp-Lw4" sceneMemberID="firstResponder"/>
@@ -492,6 +497,7 @@
                                         </view>
                                         <animations/>
                                         <color key="backgroundColor" red="0.28235294119999998" green="0.38823529410000002" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="tintColor" red="0.60392156862745094" green="0.60392156862745094" blue="0.60392156862745094" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="bottomMargin" secondItem="42N-QS-mb6" secondAttribute="bottom" id="2Uh-SB-iPf"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="42N-QS-mb6" secondAttribute="trailing" constant="-20" id="3Is-nS-BIn"/>
@@ -588,7 +594,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" title="MyRaft" image="first" id="IuN-hv-mpp"/>
+                    <tabBarItem key="tabBarItem" title="MyRaft" image="myraftsmall" id="IuN-hv-mpp"/>
                     <connections>
                         <outlet property="myCollectionView" destination="sR4-23-K1j" id="Uq1-rQ-KcC"/>
                     </connections>
@@ -599,9 +605,12 @@
         </scene>
     </scenes>
     <resources>
-        <image name="first" width="30" height="30"/>
         <image name="logofinal" width="500" height="137"/>
-        <image name="second" width="30" height="30"/>
+        <image name="myraftsmall" width="40" height="15"/>
         <image name="uber" width="26" height="25"/>
+        <image name="uberfinal" width="279" height="277"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Ru2-06-GLg"/>
+    </inferredMetricsTieBreakers>
 </document>
