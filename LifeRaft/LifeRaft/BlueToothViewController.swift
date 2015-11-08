@@ -19,6 +19,12 @@ class BlueToothViewController: UIViewController, UITableViewDataSource, UITableV
     
     let colorService = BluetoothManager()
     
+    @IBAction func cancelClick(sender: UIButton) {
+        connections.removeAll()
+    }
+    @IBAction func doneClick(sender: UIButton) {
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         colorService.delegate = self
