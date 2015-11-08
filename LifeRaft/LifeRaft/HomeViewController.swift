@@ -34,7 +34,9 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         // Dispose of any resources that can be recreated.
     }
     
-
+    func batteryLevel() -> Float{
+        return UIDevice.currentDevice().batteryLevel
+    }
     /*
     // MARK: - Navigation
 
