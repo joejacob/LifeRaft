@@ -1,3 +1,4 @@
+
 //
 //  AppDelegate.swift
 //  LifeRaft
@@ -63,6 +64,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        var clearChat = myRootRef.childByAppendingPath("/group1/chat/")
+        clearChat.setValue(nil)
     }
 
 

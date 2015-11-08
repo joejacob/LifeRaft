@@ -34,7 +34,7 @@
                                         <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BNP-Qf-ZfI" id="5WT-eJ-vBt">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message text.........................................................." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v3B-DD-y3g">
@@ -93,6 +93,7 @@
                     <connections>
                         <outlet property="bottomCons" destination="Jgj-zk-8Ib" id="qmN-sk-OlM"/>
                         <outlet property="messageField" destination="5gW-qZ-mwR" id="2L6-yU-CK4"/>
+                        <outlet property="tableMessages" destination="xvf-Me-bpy" id="1a6-bR-E8I"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
@@ -145,7 +146,7 @@
                                         <rect key="frame" x="0.0" y="28" width="544" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="O6W-VU-pRa" id="d4C-Il-R9h">
-                                            <rect key="frame" x="0.0" y="0.0" width="544" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="544" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <animations/>
                                             <color key="backgroundColor" red="0.28235294119999998" green="0.38823529410000002" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -305,7 +306,7 @@
                                                 <rect key="frame" x="0.0" y="28" width="560" height="110"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WGx-Nz-ZGG" id="7Fr-0g-hl8">
-                                                    <rect key="frame" x="0.0" y="0.0" width="560" height="109.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="560" height="109"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <animations/>
                                                     <color key="backgroundColor" red="0.28235294117647058" green="0.38823529411764707" blue="0.62745098039215685" alpha="1" colorSpace="calibratedRGB"/>
@@ -317,7 +318,7 @@
                                                 <rect key="frame" x="0.0" y="138" width="560" height="110"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YpJ-Iw-E6W" id="Be1-h4-Gso">
-                                                    <rect key="frame" x="0.0" y="0.0" width="560" height="109.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="560" height="109"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <animations/>
                                                     <color key="backgroundColor" red="0.28235294119999998" green="0.38823529410000002" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -329,7 +330,7 @@
                                                 <rect key="frame" x="0.0" y="248" width="560" height="110"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bro-IF-Arb" id="gs5-S1-UuY">
-                                                    <rect key="frame" x="0.0" y="0.0" width="560" height="109.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="560" height="109"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <animations/>
                                                     <color key="backgroundColor" red="0.28235294119999998" green="0.38823529410000002" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
