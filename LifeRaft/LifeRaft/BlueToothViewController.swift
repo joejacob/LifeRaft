@@ -32,18 +32,19 @@ class BlueToothViewController: UIViewController, UITableViewDataSource, UITableV
 */
     @IBAction func cancelClicked(sender: UIButton) {
         connections.removeAll()
-        //navigationController!.popViewControllerAnimated(true)
+        self.dismissViewControllerAnimated(true, completion: {});
+        
     }
-    
     @IBAction func doneClicked(sender: UIButton) {
         if connections.count > 0 {
             //store connections in database
-            //navigationController!.popViewControllerAnimated(true)
+            self.dismissViewControllerAnimated(true, completion: {});
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        connectedDevicesChanged(blueTooth, connectedDevices: connections)
         blueTooth.delegate = self
         memberTable.delegate = self
         memberTable.dataSource = self
