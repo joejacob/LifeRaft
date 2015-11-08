@@ -27,14 +27,40 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     @IBOutlet weak var myCollectionView: UICollectionView!
     
+    var members = [ String : [String : String]]()
+    var memKeys = [String]()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         
+        var membersRef = myRootRef.childByAppendingPath("group1/members")
+        membersRef.observeEventType(FEventType.ChildAdded, withBlock: { snapshot in
+            print(snapshot.value)
+            print(snapshot.key)
+            print("cat")
+            var newUid = snapshot.key!
+            print("dog")
+            if let newMember = snapshot.value as? [String: String] {
+            
+                let ok = self.members[newUid] == nil
+                self.members[newUid] = newMember
+                print(newMember)
+                print(newUid)
+                print (self.members[newUid])
+                    print("HELLO")
+                    self.memKeys.append(newUid)
+                    self.myCollectionView.reloadData()
+                    self.myCollectionView.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+            }
+//            print(snapshot.value.objectForKey("author"))
+//            print(snapshot.value.objectForKey("title"))
+        })
+        
         // Register cell classes
-        self.myCollectionView.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+//        self.myCollectionView.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         
 //        let ref = Firebase(url: "https://dazzling-inferno-3224.firebaseio.com/")
 //        let facebookLogin = FBSDKLoginManager()
@@ -169,14 +195,25 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 7
+        print(self.members.count)
+        return self.members.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(cellReuseIdentifier, forIndexPath: indexPath) as! MemberCollectionViewCell
         
 //        cell.backgroundColor = UIColor.blackColor()
-        cell.myNameLabel.text = "Ethan"
+//        var memValDict = self.members.indexForKey()
+        var myCurKey = self.memKeys[indexPath.row]
+        var valDict = self.members[myCurKey]
+        cell.myNameLabel.text = valDict!["Name"]!
+        cell.myBatteryView.text = valDict!["Battery"]
+        cell.myDistanceLabel.text = valDict!["Status"]
+        let url = NSURL(string: valDict!["URL"]!)
+        let data = NSData(contentsOfURL: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check
+        var image = UIImage(data: data!)
+        cell.myImageView.image = image
+//        cell.myImageView = ""
         //cell.myStatusLabel.text = "OK"
 
         

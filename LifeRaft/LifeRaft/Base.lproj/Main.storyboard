@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
@@ -426,16 +426,6 @@
                                             <rect key="frame" x="0.0" y="0.0" width="240" height="240"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Friend Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D3J-AU-Eii">
-                                                    <rect key="frame" x="54" y="8" width="200" height="21"/>
-                                                    <animations/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="21" id="NY7-79-ZER"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Battery" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Nh-fr-Vkf">
                                                     <rect key="frame" x="-7" y="211" width="80" height="21"/>
                                                     <animations/>
@@ -473,7 +463,7 @@
                                                     </variation>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="42N-QS-mb6">
-                                                    <rect key="frame" x="172" y="211" width="80" height="21"/>
+                                                    <rect key="frame" x="147" y="211" width="80" height="21"/>
                                                     <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="1Cc-Lg-6V4"/>
@@ -491,6 +481,16 @@
                                                         </mask>
                                                     </variation>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Friend Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D3J-AU-Eii">
+                                                    <rect key="frame" x="54" y="8" width="200" height="21"/>
+                                                    <animations/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="NY7-79-ZER"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <animations/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -500,7 +500,7 @@
                                         <color key="tintColor" red="0.60392156862745094" green="0.60392156862745094" blue="0.60392156862745094" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="bottomMargin" secondItem="42N-QS-mb6" secondAttribute="bottom" id="2Uh-SB-iPf"/>
-                                            <constraint firstAttribute="trailingMargin" secondItem="42N-QS-mb6" secondAttribute="trailing" constant="-20" id="3Is-nS-BIn"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="42N-QS-mb6" secondAttribute="trailing" constant="5" id="3Is-nS-BIn"/>
                                             <constraint firstItem="3Nh-fr-Vkf" firstAttribute="leading" secondItem="9Zu-hb-nxl" secondAttribute="leadingMargin" constant="-75" id="5gG-g3-Lew"/>
                                             <constraint firstItem="RT5-Kq-xrt" firstAttribute="leading" secondItem="9Zu-hb-nxl" secondAttribute="leadingMargin" constant="2" id="9Kz-fi-24J"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="RT5-Kq-xrt" secondAttribute="trailing" constant="2" id="AvC-S7-clF"/>
@@ -536,6 +536,8 @@
                                         <size key="customSize" width="240" height="240"/>
                                         <variation key="default">
                                             <mask key="constraints">
+                                                <exclude reference="E0p-w0-ICW"/>
+                                                <exclude reference="RbP-LU-gav"/>
                                                 <exclude reference="9Kz-fi-24J"/>
                                                 <exclude reference="AvC-S7-clF"/>
                                                 <exclude reference="Q3K-e5-mSc"/>
@@ -560,6 +562,9 @@
                                             </mask>
                                         </variation>
                                         <connections>
+                                            <outlet property="myBatteryView" destination="3Nh-fr-Vkf" id="a9C-Z8-U7t"/>
+                                            <outlet property="myDistanceLabel" destination="42N-QS-mb6" id="LL2-4s-D8V"/>
+                                            <outlet property="myImageView" destination="RT5-Kq-xrt" id="ONB-cS-Vyc"/>
                                             <outlet property="myNameLabel" destination="D3J-AU-Eii" id="uOd-DP-9XT"/>
                                         </connections>
                                     </collectionViewCell>

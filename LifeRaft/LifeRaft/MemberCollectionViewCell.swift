@@ -11,8 +11,9 @@ import UIKit
 class MemberCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var myNameLabel: UILabel!
-    @IBOutlet weak var myStatusLabel: UILabel!
+//    @IBOutlet weak var myStatusLabel: UILabel!
+//    @IBOutlet weak var myImageView: UIImageView!
     @IBOutlet weak var myImageView: UIImageView!
-    
-    
+    @IBOutlet weak var myBatteryView: UILabel!
+    @IBOutlet weak var myDistanceLabel: UILabel!
 }
