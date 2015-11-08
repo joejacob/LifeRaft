@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         UIDevice.currentDevice().batteryMonitoringEnabled = true
         
-        GMSServices.provideAPIKey("AIzaSyALSy_NQknKAs2nfCSr_XPc-sDiFm4Idsw")
+        GMSServices.provideAPIKey("AIzaSyDETbJG2OPzluItdlpK2n47PRB0nFq7SP4")
         application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: UIUserNotificationType.Sound, categories: nil))
         application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: UIUserNotificationType.Alert, categories: nil))
         application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: UIUserNotificationType.Badge, categories: nil))
