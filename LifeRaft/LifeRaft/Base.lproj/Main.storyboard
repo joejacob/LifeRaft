@@ -98,26 +98,32 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MLJ-0b-py5">
                                 <rect key="frame" x="304" y="562" width="268" height="30"/>
                                 <animations/>
-                                <state key="normal" title="DONE"/>
+                                <color key="backgroundColor" red="0.28235294119999998" green="0.38823529410000002" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="DONE">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="doneClicked:" destination="Qfc-td-LWy" eventType="touchUpInside" id="Okd-hw-gnQ"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Searching for group..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rQa-2A-s9p">
-                                <rect key="frame" x="0.0" y="20" width="600" height="32"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Searching for group..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rQa-2A-s9p">
+                                <rect key="frame" x="0.0" y="40" width="600" height="32"/>
                                 <animations/>
+                                <color key="backgroundColor" red="0.28235294119999998" green="0.38823529410000002" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="600" id="7Tw-h8-29i"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="600" id="jbM-Mu-vKF"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0rR-Oa-L4A">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0rR-Oa-L4A">
                                 <rect key="frame" x="28" y="60" width="544" height="494"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="separatorColor" red="0.28235294119999998" green="0.38823529410000002" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="sectionIndexBackgroundColor" red="0.28235294119999998" green="0.38823529410000002" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="O6W-VU-pRa">
                                         <rect key="frame" x="0.0" y="28" width="544" height="44"/>
@@ -126,27 +132,32 @@
                                             <rect key="frame" x="0.0" y="0.0" width="544" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <animations/>
+                                            <color key="backgroundColor" red="0.28235294119999998" green="0.38823529410000002" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="tintColor" red="0.28235294119999998" green="0.38823529410000002" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
                                         </tableViewCellContentView>
                                         <animations/>
+                                        <color key="backgroundColor" red="0.28235294119999998" green="0.38823529410000002" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="tintColor" red="0.28235294119999998" green="0.38823529410000002" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="spT-v0-Z3c">
                                 <rect key="frame" x="28" y="562" width="268" height="30"/>
                                 <animations/>
-                                <state key="normal" title="CANCEL"/>
+                                <state key="normal" title="CANCEL">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
                                     <action selector="cancelClicked:" destination="Qfc-td-LWy" eventType="touchUpInside" id="eXw-20-Xhd"/>
                                 </connections>
                             </button>
                         </subviews>
                         <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.28235294119999998" green="0.38823529410000002" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="MLJ-0b-py5" firstAttribute="top" secondItem="0rR-Oa-L4A" secondAttribute="bottom" constant="8" id="2tb-IY-3dB"/>
                             <constraint firstItem="PJY-XT-tpA" firstAttribute="top" secondItem="spT-v0-Z3c" secondAttribute="bottom" constant="8" id="59G-I3-vEY"/>
                             <constraint firstItem="rQa-2A-s9p" firstAttribute="centerX" secondItem="UFu-hd-696" secondAttribute="centerX" id="9C6-NX-mTh"/>
-                            <constraint firstItem="rQa-2A-s9p" firstAttribute="top" secondItem="Whh-yr-DmC" secondAttribute="bottom" id="A2T-wE-KS1"/>
                             <constraint firstItem="MLJ-0b-py5" firstAttribute="width" secondItem="spT-v0-Z3c" secondAttribute="width" id="A6R-qx-p8O"/>
                             <constraint firstItem="spT-v0-Z3c" firstAttribute="leading" secondItem="UFu-hd-696" secondAttribute="leadingMargin" constant="8" id="Doc-iJ-zlF"/>
                             <constraint firstItem="MLJ-0b-py5" firstAttribute="leading" secondItem="spT-v0-Z3c" secondAttribute="trailing" constant="8" id="EQW-6W-aEs"/>
