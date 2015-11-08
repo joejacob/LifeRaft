@@ -8,22 +8,29 @@
 
 import UIKit
 
-class MessagesViewController: UIViewController, UITextFieldDelegate {
+class MessagesViewController: UIViewController, UITextFieldDelegate,UITableViewDataSource, UITableViewDelegate {
 
     
     @IBOutlet var messageField: UITextField!
     
     public var myMessages = [String]()
     
+    @IBOutlet weak var tableMessages: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil);
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
         self.messageField.delegate = self
+        self.tableMessages.delegate = self
+        self.tableMessages.dataSource = self
+        let rgbValue = 0x4863a0
+        let r = CGFloat((rgbValue & 0xFF0000) >> 16)/255.0
+        let g = CGFloat((rgbValue & 0xFF00) >> 8)/255.0
+        let b = CGFloat((rgbValue & 0xFF))/255.0
+        tableMessages.backgroundColor = UIColor(red:r, green: g, blue: b, alpha: 1.0)
     }
     @IBOutlet weak var bottomCons: NSLayoutConstraint!
     
-    @IBOutlet weak var tableMessages: UITableView!
     
     func keyboardWillShow(sender: NSNotification) {
         let info:NSDictionary = sender.userInfo!
@@ -36,24 +43,38 @@ class MessagesViewController: UIViewController, UITextFieldDelegate {
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         myMessages.append(textField.text!)
+        self.tableMessages.reloadData()
         textField.text = ""
         self.view.endEditing(true)
         return false
     }
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 7
+    //FUNCTION TO ADD FROM OTHER PLACES
+    func newChat(chatMessage: String){
+        myMessages.append(chatMessage)
+        self.tableMessages.reloadData()
     }
     
+    func tableView(tableView:UITableView, numberOfRowsInSection section:Int) -> Int
+    {
+        return myMessages.count
+    }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) ->   UITableViewCell {
-        let cell = UITableViewCell()
-        let label = UILabel(frame: CGRect(x:0, y:0, width:200, height:50))
-        label.text = "Hello Man"
-        cell.addSubview(label)
+        let rgbValue = 0x4863a0
+        let r = CGFloat((rgbValue & 0xFF0000) >> 16)/255.0
+        let g = CGFloat((rgbValue & 0xFF00) >> 8)/255.0
+        let b = CGFloat((rgbValue & 0xFF))/255.0
+        let cell:UITableViewCell=UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "mycell")
+        let newMember = myMessages[indexPath.row]
+        cell.backgroundColor = UIColor(red:r, green: g, blue: b, alpha: 1.0)
+        cell.textLabel?.text="\(myFullName): \(newMember)"
+        
+        let id = myRootRef.childByAppendingPath("group1/chat/").childByAutoId()
+        //let charRef = myRootRef.childByAppendingPath("group1/chat/")
+        id.setValue("\(myFullName) \(newMember)")
+        
+        cell.textLabel?.textColor=UIColor.whiteColor()
         return cell
     }
-    
-    
     // UITableViewDelegate Functions
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
