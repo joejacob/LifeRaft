@@ -9,6 +9,7 @@
 
 import UIKit
 import Firebase
+import SwiftyJSON
 
 class BlueToothViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -23,25 +24,19 @@ class BlueToothViewController: UIViewController, UITableViewDataSource, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var memberRef = myRootRef.childByAppendingPath("group1/members/")
+        var bluetoothRef = myRootRef.childByAppendingPath("/bluetooth/")
         
-       /* memberRef.observeEventType(FEventType.Value, withBlock: {
-            snapshot in let json = JSON(snapshot.value)
-            for (r , k) in json {
-                var testGroup = [String:String]()
-                for (key, val) in k {
-                    testGroup[String(key)] = String(val)
-                }
-                self.groupMems[String(r)] = testGroup
-            }
-            self.updatePeople(self.groupMems)
-            print("\(self.groupMems.count)")
-        })*/
+        let groupId = myRootRef.childByAppendingPath("/").childByAutoId()
+        for s in connections {
+            let id = bluetoothRef.childByAutoId()
+            id.setValue(s)
+            groupId.setValue([id: s])
+        }
         
-        connectedDevicesChanged(blueTooth, connectedDevices: connections)
-        blueTooth.delegate = self
-        memberTable.delegate = self
-        memberTable.dataSource = self
+        self.connectedDevicesChanged(self.blueTooth, connectedDevices: self.connections)
+        self.blueTooth.delegate = self
+        self.memberTable.delegate = self
+        self.memberTable.dataSource = self
     }
     @IBAction func cancelClicked(sender: UIButton) {
         connections.removeAll()
