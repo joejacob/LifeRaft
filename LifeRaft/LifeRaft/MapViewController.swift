@@ -40,7 +40,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate, UIPopoverPresenta
             // distance from current user
             let ccoord = CLLocation(latitude: coord.latitude, longitude: coord.longitude)
             let dist = Double(round((ccoord.distanceFromLocation(base)/1000) * Double(0.62137) * 10)/10)
-            m.snippet = String("\(dist) mi")
+            m.snippet = "\(dist) mi"
             
             m.appearAnimation = kGMSMarkerAnimationPop
             m.map = mapView
@@ -54,34 +54,15 @@ class MapViewController: UIViewController, GMSMapViewDelegate, UIPopoverPresenta
     }
     
     
-    /*func mapView(mapView: GMSMapView!, markerInfoWindow marker: GMSMarker!) -> UIView {
-        let popupWidth = UIScreen.mainScreen().bounds.width
-        let contentWidth = 180
-        let contentPad = 10
-        let popupHeight = 140
-        let popupBottomPadding = 16
-        let popupContentHeight = popupHeight - popupBottomPadding
-        
-        var outerView = UIView(frame: CGRectMake(CGFloat(0), CGFloat(0), CGFloat(popupWidth), CGFloat(popupHeight)))
-        
-        var view = UIView(frame: CGRectMake(CGFloat(0), CGFloat(0), CGFloat(popupWidth), CGFloat(popupHeight)))
-        view.backgroundColor = UIColor.whiteColor()
-        
-        var titleLabel = UILabel(frame: CGRectMake(CGFloat(contentPad), CGFloat(0), CGFloat(contentWidth), CGFloat(0)))
-        titleLabel.font = UIFont(name: titleLabel.font.fontName, size:17.0)
-        titleLabel.text = marker.title
-        
-        var descriptionLabel = UILabel(frame: CGRectMake(CGFloat(contentPad), CGFloat(24), CGFloat(contentWidth), CGFloat(20)))
-        descriptionLabel.font = UIFont(name: descriptionLabel.font.fontName, size: 11.0)
-        descriptionLabel.text = marker.snippet
-        
-        view.addSubview(titleLabel)
-        view.addSubview(descriptionLabel)
-        
-        return view
-        
-        
-    }*/
+    /*func mapView(mapView: GMSMapView!, markerInfoWindow marker: GMSMarker!) -> UIView! {
+        marker.infoWindowAnchor = CGPointMake(0.44, 0.45)
+        var view =  NSBundle.mainBundle().loadNibNamed("MapInfoWindow", owner:self, options:nil)[0] as! UIView
+        //view.name.text = marker.title
+        //view.distance.text = "\(dist) mi"
+        //view.placeImage.image = [UIImage imageNamed:@"customPlaceImage"];
+        //view.placeImage.transform = CGAffineTransformMakeRotation(-.08);
+        return view;
+    }
     
     func mapView(mapView: GMSMapView!, didTapMarker marker: GMSMarker!) -> Bool {
         
@@ -89,12 +70,19 @@ class MapViewController: UIViewController, GMSMapViewDelegate, UIPopoverPresenta
         //(mapVC, animated: true, completion: nil)
         
         return true
+    }*/
+    
+   /* @IBOutlet weak var getDirectionsView: UIView!
+    func mapView(mapView: GMSMapView!, didLongPressAtCoordinate marker: CLLocationCoordinate2D!) {
+        print("cat")
+        self.view.bringSubviewToFront(getDirectionsView)
+
     }
     
     @IBAction func tapCallDirections(sender: UIButton) {
         
         
-    }
+    }*/
     
     
     override func didReceiveMemoryWarning() {

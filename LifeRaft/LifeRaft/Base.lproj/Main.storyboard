@@ -288,32 +288,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" text="Third View" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="baG-NY-wLe">
-                                <rect key="frame" x="195" y="279" width="210" height="42"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GM5-o9-muf">
+                                <rect key="frame" x="180" y="369" width="240" height="128"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hey" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aq7-AO-gM9">
+                                        <rect key="frame" x="95" y="53" width="31" height="21"/>
+                                        <animations/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="36"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Loaded by SecondViewController" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HXV-1M-8GX">
-                                <rect key="frame" x="192" y="329" width="216" height="17"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            </view>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="HXV-1M-8GX" firstAttribute="top" secondItem="baG-NY-wLe" secondAttribute="bottom" constant="8" symbolic="YES" id="4uE-iN-zqr"/>
-                            <constraint firstAttribute="centerX" secondItem="baG-NY-wLe" secondAttribute="centerX" id="8IR-Bz-vTk"/>
-                            <constraint firstAttribute="centerY" secondItem="baG-NY-wLe" secondAttribute="centerY" id="HHM-yY-jGr"/>
-                            <constraint firstItem="HXV-1M-8GX" firstAttribute="centerX" secondItem="baG-NY-wLe" secondAttribute="centerX" id="HOs-jn-Q3o"/>
-                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Third" image="second" id="qUw-aQ-E0B" userLabel="Third"/>
+                    <connections>
+                        <outlet property="getDirectionsView" destination="GM5-o9-muf" id="ArW-HZ-K7x"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Et2-9j-DK0" sceneMemberID="firstResponder"/>
             </objects>
