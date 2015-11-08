@@ -39,6 +39,7 @@ class BlueToothViewController: UIViewController, UITableViewDataSource, UITableV
         self.memberTable.dataSource = self
     }
     @IBAction func cancelClicked(sender: UIButton) {
+        
         connections.removeAll()
         self.dismissViewControllerAnimated(true, completion: {});
         
