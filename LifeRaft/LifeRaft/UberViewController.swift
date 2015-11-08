@@ -69,7 +69,7 @@ class UberViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func updateUberStatus(requestNum : String, status : String, index: Int){
         var stat = ["status": status]
         Alamofire.request(.PUT, "https://sandbox-api.uber.com/v1/sandbox/requests/\(requestNum)", parameters: stat, encoding: .JSON, headers: myHeader)
-        //currentUbers[0]["status"]=status
+        currentUbers[0]["status"]=status
         
     }
     
@@ -203,7 +203,7 @@ class UberViewController: UIViewController, UITableViewDataSource, UITableViewDe
 */          let button = buttonArray[indexPath.row]
             print("\(button.state)")
             if uber["status"]! == "accepted"{
-                cell.textLabel?.text="ETA: \(uber["eta"]!!)  Driver name: \(uber["driver name"]!!)"
+                cell.textLabel?.text="ETA: \(uber["eta"]!)  Driver name: \(uber["driver name"]!)"
                 
             }
             else{
