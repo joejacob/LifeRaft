@@ -40,7 +40,7 @@
                                         <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BNP-Qf-ZfI" id="5WT-eJ-vBt">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Message text.........................................................." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v3B-DD-y3g">
@@ -95,18 +95,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hoh-Ie-mmR">
-                                <rect key="frame" x="366" y="499" width="109" height="42"/>
-                                <animations/>
-                                <state key="normal" title="Join Group"/>
-                                <connections>
-                                    <segue destination="Qfc-td-LWy" kind="show" id="aRF-Fl-PRP"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sbv-RO-Qhm">
-                                <rect key="frame" x="130" y="499" width="109" height="42"/>
+                                <rect key="frame" x="238" y="494" width="125" height="42"/>
                                 <animations/>
-                                <state key="normal" title="Create Group"/>
+                                <state key="normal" title="Create/Join Group"/>
                                 <connections>
                                     <segue destination="Qfc-td-LWy" kind="show" id="U21-TO-91h"/>
                                 </connections>
@@ -157,7 +149,7 @@
                                         <rect key="frame" x="0.0" y="28" width="544" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="O6W-VU-pRa" id="d4C-Il-R9h">
-                                            <rect key="frame" x="0.0" y="0.0" width="544" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="544" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -301,7 +293,7 @@
                                         <rect key="frame" x="0.0" y="28" width="560" height="110"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WGx-Nz-ZGG" id="7Fr-0g-hl8">
-                                            <rect key="frame" x="0.0" y="0.0" width="560" height="109.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="560" height="109"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <animations/>
                                         </tableViewCellContentView>
@@ -309,13 +301,6 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EN4-7Z-mBR">
-                                <rect key="frame" x="70" y="35" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <segue destination="F8I-3v-yu4" kind="show" id="vff-C5-uha"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -464,7 +449,4 @@
         <image name="first" width="30" height="30"/>
         <image name="second" width="30" height="30"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="U21-TO-91h"/>
-    </inferredMetricsTieBreakers>
 </document>
