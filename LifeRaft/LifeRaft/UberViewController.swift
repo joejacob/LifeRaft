@@ -131,6 +131,7 @@ class UberViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
     
+    
     func numberOfSectionsInTableView(tableView: UITableView) -> Int
     {
         return 1
@@ -150,10 +151,14 @@ class UberViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let uber = currentUbers[indexPath.row]
         //let join : UISwitch = UISwitch()
         //join.frame = CGRectMake(20, 20, 40, 20)
-        
+            let rgbValue = 0x4863a0
+            let r = CGFloat((rgbValue & 0xFF0000) >> 16)/255.0
+            let g = CGFloat((rgbValue & 0xFF00) >> 8)/255.0
+            let b = CGFloat((rgbValue & 0xFF))/255.0
+            cell.backgroundColor = UIColor(red:r, green: g, blue: b, alpha: 1.0)
         let button : UIButton = UIButton(type: UIButtonType.Custom) as UIButton
         button.frame = CGRectMake(20, 20, 80, 20)
-            
+            //cell.backgroundColor = UIColor.blueColor()
         let cellHeight: CGFloat = 110.0
         //join.center = CGPoint(x: view.bounds.width - 60, y:cellHeight/2.0)
         //join.addTarget(self, action: "buttonClicked:", forControlEvents:  UIControlEvents.ValueChanged)

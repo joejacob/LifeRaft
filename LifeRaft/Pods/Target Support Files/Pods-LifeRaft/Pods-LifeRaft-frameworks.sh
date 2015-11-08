@@ -84,8 +84,16 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "Pods-LifeRaft/Bolts.framework"
+  install_framework "Pods-LifeRaft/FBSDKCoreKit.framework"
+  install_framework "Pods-LifeRaft/FBSDKLoginKit.framework"
+  install_framework "Pods-LifeRaft/FBSDKShareKit.framework"
   install_framework "Pods-LifeRaft/Firebase.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "Pods-LifeRaft/Bolts.framework"
+  install_framework "Pods-LifeRaft/FBSDKCoreKit.framework"
+  install_framework "Pods-LifeRaft/FBSDKLoginKit.framework"
+  install_framework "Pods-LifeRaft/FBSDKShareKit.framework"
   install_framework "Pods-LifeRaft/Firebase.framework"
 fi
