@@ -11,17 +11,28 @@ import GoogleMaps
 import Firebase
 import SwiftyJSON
 
-class MapViewController: UIViewController, GMSMapViewDelegate {
+class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDelegate {
     
     // group cannot exceed max of 100 people
     var markers = [GMSMarker?](count: 100, repeatedValue: nil)
     var uberMarkers = [GMSMarker?](count: 100, repeatedValue: nil)
     var groupMems = [String: [String: String]]()   // list of people in group
     var uberMems = [String: [String: String]]()   // list of people in group
-    
+    let locationManager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Ask for Authorisation from the User.
+        /*self.locationManager.requestAlwaysAuthorization()
+        
+        // For use in foreground
+        self.locationManager.requestWhenInUseAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.startUpdatingLocation()
+        }*/
         
         let camera = GMSCameraPosition.cameraWithLatitude(-33.868, longitude:151.2086, zoom:6)
         var mapView = GMSMapView.mapWithFrame(self.view.bounds, camera:camera)
@@ -185,8 +196,16 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
         var camUpdate = GMSCameraUpdate.fitBounds(bounds, withPadding:30.0)
         mapView.moveCamera(camUpdate)
         self.view = mapView
+        
+       /* var helloWorldTimer = NSTimer.scheduledTimerWithTimeInterval(10.0, target: self, selector: Selector("updateLocAndUber"), userInfo: nil, repeats: true)*/
+        
     }
 
+    func updateLocAndUber() {
+        let id = "3651"
+        
+    }
+    
     func updatePeople(gM:[String: [String:String]]) {
         /*
         WHEN THE DATABASE HAS REAL THINGS
